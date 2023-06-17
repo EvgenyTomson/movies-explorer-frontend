@@ -1,3 +1,4 @@
+import './Main.css';
 
 const Main = (props) => {
   return (
