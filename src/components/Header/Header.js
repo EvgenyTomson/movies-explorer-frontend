@@ -1,8 +1,13 @@
-const Header = (props) => {
-  return (
-    <div>
+import './Header.css';
+import Logo from "../Logo/Logo";
+import Navigation from '../Navigation/Navigation';
 
-    </div>
+const Header = () => {
+  return (
+    <header className="header">
+      <Logo />
+      <Navigation isLoggedIn={true} />
+    </header>
   )
 };
 

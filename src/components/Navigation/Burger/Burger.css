@@ -1,0 +1,12 @@
+.burger {
+  display: none;
+}
+
+.burger_active {
+  display: block;
+  cursor: pointer;
+}
+
+.burger_active:hover {
+  opacity: .7;
+}

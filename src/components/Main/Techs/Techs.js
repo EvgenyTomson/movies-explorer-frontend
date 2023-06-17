@@ -2,9 +2,9 @@ import './Techs.css'
 
 const Techs = (props) => {
   return (
-    <div>
+    <section className="tech">
 
-    </div>
+    </section>
   )
 };
 

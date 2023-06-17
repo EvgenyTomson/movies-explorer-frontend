@@ -1,10 +1,10 @@
 import './NavTab.css'
 
-const NavTab = (props) => {
+const NavTab = () => {
   return (
-    <div>
+    <nav className="navtab">
 
-    </div>
+    </nav>
   )
 };
 
