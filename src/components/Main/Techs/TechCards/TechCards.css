@@ -1,3 +1,17 @@
+.tech__cards {
+  margin: 100px 0 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+}
+
+.tech__item {
+  margin: 0;
+  padding: 0;
+}
+
 .tech__card {
   display: block;
   padding: 21px 0 22px;

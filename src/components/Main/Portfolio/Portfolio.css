@@ -1,0 +1,10 @@
+.portfolio {
+  padding: 100px 0 125px;
+}
+
+.portfolio__title {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.11;
+  color: #8b8b8b;
+}
