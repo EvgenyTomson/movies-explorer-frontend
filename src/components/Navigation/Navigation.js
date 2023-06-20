@@ -1,13 +1,15 @@
 import './Navigation.css';
 import { NavLink } from "react-router-dom";
 
-const Navigation = ({ isLoggedIn }) => {
+const Navigation = ({ isLoggedIn, isBurger = false }) => {
   return (
     <nav className="navigation">
       <ul className="navigation__list">
-        <li className="navigation__item">
-          <NavLink to="/" className="navigation__link navigation__link_type_home">Гравная</NavLink>
-        </li>
+        { isBurger &&
+          <li className="navigation__item">
+            <NavLink to="/" className="navigation__link navigation__link_type_home">Гравная</NavLink>
+          </li>
+        }
         <li className="navigation__item">
           <NavLink to="/movies" className="navigation__link">Фильмы</NavLink>
         </li>

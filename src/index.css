@@ -3,7 +3,13 @@
 
 :root {
   --main-bg-color: #202020;
-  --hero-bg-color: #073042;
+  --promo-bg-color: #073042;
   --teach-nav-bg-color: #272727;
   --main-text-color: #fff;
+  --max-content-width: 1140px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--max-content-width);
 }

@@ -1,6 +1,11 @@
 .header {
-  width: 100%;
-  padding: 18px 0 18px;
+  /* width: 100%; */
+  /* padding: 18px 70px 18px; */
+  padding: 18px calc((100% - 1140px) / 2);
   display: flex;
   gap: 44px;
+}
+
+.header_type_promo {
+  background-color: var(--promo-bg-color);
 }

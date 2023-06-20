@@ -2,7 +2,7 @@ import './Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="footer container">
       <div className="footer__top" >
         <p className="footer__text" >Учебный проект Яндекс.Практикум х BeatFilm.</p>
       </div>
