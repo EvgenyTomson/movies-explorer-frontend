@@ -1,0 +1,12 @@
+.tech__card {
+  display: block;
+  padding: 21px 0 22px;
+  width: 90px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+  background-color: #303030;
+  border-radius: 10px;
+}

@@ -1,3 +1,32 @@
 .tech {
+  padding: 100px 0 100px;
   background-color: var(--teach-nav-bg-color);
+}
+
+.tech__wrapper {
+  text-align: center;
+}
+
+.tech__title {
+  margin: 90px 0 0;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.16;
+  letter-spacing: -0.04em;
+}
+
+.tech__text {
+  margin: 26px auto 0;
+  max-width: 460px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.04em;
+}
+
+.tech__cards {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
