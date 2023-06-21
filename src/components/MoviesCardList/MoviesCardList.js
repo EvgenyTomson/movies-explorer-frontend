@@ -1,8 +1,7 @@
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css'
-import { moviesData } from './listData';
 
-const MoviesCardList = () => {
+const MoviesCardList = ({ moviesData }) => {
   return (
     <ul className="movies-list">
       {

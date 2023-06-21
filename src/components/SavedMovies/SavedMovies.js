@@ -1,8 +1,14 @@
-const SavedMovies = (props) => {
-  return (
-    <div>
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import SearchForm from '../SearchForm/SearchForm';
+import './SavedMovies.css';
+import { savedMoviesData } from '../../constants/savedMoviesData';
 
-    </div>
+const SavedMovies = () => {
+  return (
+    <section className="saved-movies container">
+      <SearchForm />
+      <MoviesCardList moviesData={savedMoviesData}/>
+    </section>
   )
 };
 

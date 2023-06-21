@@ -1,7 +1,18 @@
+import { useLocation } from 'react-router-dom';
 import { convertDuration } from '../../utils/utils';
+import MovieCardButton from './MovieCardButton/MovieCardButton';
 import './MoviesCard.css';
 
 const MoviesCard = ({ movieData }) => {
+  const { pathname } = useLocation();
+
+  const saveMovieHandler = () => {
+    console.log('Movie saved');
+  }
+
+  const deleteMovieHandler = () => {
+    console.log('Movie deleted');
+  }
 
   return (
     <li className="movie-card">
@@ -10,12 +21,12 @@ const MoviesCard = ({ movieData }) => {
         src={movieData.image}
         alt={movieData.nameRU}
       />
-      <button
-        className="movie-card__save"
-        type="button"
+      <MovieCardButton
+        onClickHandler={pathname === "/movies" ? saveMovieHandler : deleteMovieHandler}
+        typeClass={''}
       >
-        Сохранить
-      </button>
+        {pathname === "/movies" ? 'Сохранить' : 'x'}
+      </MovieCardButton>
       <div className="movie-card__description">
         <p className="movie-card__name">
           {movieData.nameRU}

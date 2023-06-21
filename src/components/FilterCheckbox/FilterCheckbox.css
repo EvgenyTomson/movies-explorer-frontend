@@ -28,7 +28,7 @@
   content: '';
   width: 36px;
   height: 20px;
-  background-image: url('../../../images/checkbox-off.svg');
+  background-image: url('../../images/checkbox-off.svg');
   background-repeat: no-repeat;
   background-size: contain;
   left: 50%;
@@ -38,7 +38,7 @@
 }
 
 .checkbox_type_real:checked + .checkbox_type_custom::before {
-  background-image: url('../../../images/checkbox-on.svg');
+  background-image: url('../../images/checkbox-on.svg');
 }
 
 /* .checkbox_type_real:focus + .checkbox_type_custom {
