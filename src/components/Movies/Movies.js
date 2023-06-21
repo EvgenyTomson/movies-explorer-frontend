@@ -1,8 +1,16 @@
-const Movies = (props) => {
-  return (
-    <div>
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import SearchForm from './SearchForm/SearchForm';
+import './Movies.css';
 
-    </div>
+const Movies = () => {
+  return (
+    <section className="movies container">
+      <SearchForm />
+      <MoviesCardList />
+      <button className="movies__more" type="button">
+        Ещё
+      </button>
+    </section>
   )
 };
 

@@ -1,10 +1,17 @@
 import './FilterCheckbox.css'
 
-const FilterCheckbox = (props) => {
+const FilterCheckbox = ({checkHandler, isChecked}) => {
   return (
-    <div>
-
-    </div>
+    <label className="checkbox">
+      <input
+        type="checkbox"
+        className="checkbox_type_real"
+        checked={isChecked}
+        onChange={checkHandler}
+      />
+      <span className="checkbox_type_custom" />
+      Короткометражки
+    </label>
   )
 };
 

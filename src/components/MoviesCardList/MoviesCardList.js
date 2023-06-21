@@ -1,10 +1,16 @@
+import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css'
+import { moviesData } from './listData';
 
-const MoviesCardList = (props) => {
+const MoviesCardList = () => {
   return (
-    <div>
-
-    </div>
+    <ul className="movies-list">
+      {
+        moviesData.map(({ _id, ...movie}) => (
+          <MoviesCard key={_id} movieData={movie} />
+        ))
+      }
+    </ul>
   )
 };
 

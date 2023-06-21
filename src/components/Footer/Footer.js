@@ -10,10 +10,24 @@ const Footer = () => {
         <p className="footer__coryright">&copy; {new Date().getFullYear()}</p>
         <ul className="footer__list">
           <li className="footer__list-item">
-            <a className="footer__link" href="https://practicum.yandex.ru/">Яндекс.Практикум</a>
+            <a
+              className="footer__link"
+              href="https://practicum.yandex.ru/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Яндекс.Практикум
+            </a>
           </li>
           <li className="footer__list-item">
-            <a className="footer__link" href="https://github.com/EvgenyTomson">Github</a>
+            <a
+              className="footer__link"
+              href="https://github.com/EvgenyTomson"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Github
+            </a>
           </li>
         </ul>
       </div>
