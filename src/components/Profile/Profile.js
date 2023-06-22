@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Profile.css';
 
-const Profile = () => {
+const Profile = ({ onLogout }) => {
   const [user, setUser] = useState({name: 'Виталий', email: 'user@mail.ru'});
 
   const handleChange = ({ target }) => {
@@ -15,7 +15,7 @@ const Profile = () => {
   }
 
   const handleLogout = () => {
-    console.log('Logout complete');
+    onLogout();
   }
 
   return (

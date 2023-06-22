@@ -1,0 +1,34 @@
+.login-register-menu {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 30px;
+  list-style: none;
+}
+
+/* .login-register-menu__item {
+
+} */
+
+.login-register-menu__link {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.login-register-menu__link_type_login {
+  padding: 8px 20px;
+  color: #000;
+  background-color: #3ddd84;
+  border-radius: 3px;
+}
+
+.login-register-menu__link:hover{
+  opacity: .7;
+}

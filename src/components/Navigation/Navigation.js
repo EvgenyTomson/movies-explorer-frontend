@@ -1,7 +1,9 @@
+import LoginRegisterMenu from './LoginRegisterMenu/LoginRegisterMenu';
 import './Navigation.css';
 import { NavLink } from "react-router-dom";
 
-const Navigation = ({ isLoggedIn, isBurger = false }) => {
+const Navigation = ({  isLogged, isBurger = false }) => {
+
   return (
     <nav className="navigation">
       <ul className="navigation__list">
@@ -10,14 +12,27 @@ const Navigation = ({ isLoggedIn, isBurger = false }) => {
             <NavLink to="/" className="navigation__link navigation__link_type_home">Гравная</NavLink>
           </li>
         }
-        <li className="navigation__item">
-          <NavLink to="/movies" className="navigation__link">Фильмы</NavLink>
-        </li>
-        <li className="navigation__item">
-          <NavLink to="/saved-movies" className="navigation__link navigation__link_type_saved-movies">Сохранённые фильмы</NavLink>
-        </li>
+
+        {
+          isLogged
+          ? <>
+              <li className="navigation__item">
+                <NavLink to="/movies" className="navigation__link">Фильмы</NavLink>
+              </li>
+              <li className="navigation__item">
+                <NavLink to="/saved-movies" className="navigation__link navigation__link_type_saved-movies">Сохранённые фильмы</NavLink>
+              </li>
+          </>
+          : null
+        }
       </ul>
-      <NavLink to="/profile" className="navigation__link navigation__link_type_profile">Аккаунт</NavLink>
+
+      {
+        isLogged
+        ? <NavLink to="/profile" className="navigation__link navigation__link_type_profile">Аккаунт</NavLink>
+        : <LoginRegisterMenu />
+      }
+
     </nav>
   )
 };
