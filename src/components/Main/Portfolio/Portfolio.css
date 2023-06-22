@@ -8,3 +8,26 @@
   line-height: 1.11;
   color: #8b8b8b;
 }
+
+@media screen and (max-width: 1200px) {
+  .portfolio {
+    padding: 100px 30px 125px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .portfolio {
+    padding: 90px 50px 90px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .portfolio {
+    padding: 70px 14px 70px;
+  }
+
+  .portfolio__title {
+    font-size: 14px;
+    line-height: 1.43;
+  }
+}

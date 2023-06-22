@@ -20,7 +20,34 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  letter-spacing: -0.56px;
   color: #fff;
   background-color: #303030;
   border-radius: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .tech__cards {
+    margin-top: 83px;
+  }
+
+  .tech__card {
+    width: 84px;
+    font-size: 12px;
+    letter-spacing: -0.48px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .tech__cards {
+    margin: 50px 32px 0;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .tech__cards {
+    margin: 50px 53px 0;
+  }
 }

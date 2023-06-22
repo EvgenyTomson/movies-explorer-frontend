@@ -25,11 +25,18 @@ const AboutMe = () => {
             Github
           </a>
         </div>
-        <img
+        <div className="about-me__photo-wrapper">
+          <img
+            className="about-me__photo"
+            src={studentPhoto}
+            alt="Фотограция студента"
+          />
+        </div>
+        {/* <img
           className="about-me__photo"
           src={studentPhoto}
           alt="Фотограция студента"
-        />
+        /> */}
       </div>
     </section>
   )

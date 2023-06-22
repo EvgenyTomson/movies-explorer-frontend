@@ -8,16 +8,13 @@
   gap: 40px;
 }
 
-/* .about__segment {
-
-} */
-
 .about__subtitle {
   margin: 0;
   margin-bottom: 26px;
   font-weight: 400;
   font-size: 20px;
   line-height: 1.2;
+  letter-spacing: -0.8px;
 }
 
 .about__text {
@@ -71,4 +68,62 @@
   font-size: 14px;
   line-height: 17px;
   color: #8b8b8b;
+}
+
+@media screen and (max-width: 1200px) {
+  .about {
+    padding: 90px 30px 90px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .about__text {
+    font-size: 12px;
+  }
+
+  .about__plan {
+    gap: 30px;
+  }
+
+  .about__progress {
+    margin-top: 93px;
+  }
+
+  .about__week_type_first {
+    flex-basis: 30%;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .about {
+    padding: 70px 18px 70px;
+  }
+
+  .about__text {
+    font-size: 11px;
+  }
+
+  .about__plan {
+    margin-top: 60px;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  .about__progress {
+    margin-top: 60px;
+  }
+
+  .about__subtitle {
+    margin-bottom: 16px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+
+  .about__week-lasts {
+    font-size: 11px;
+  }
+
+  .about__week-title {
+    font-size: 11px;
+  }
 }

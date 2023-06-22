@@ -12,10 +12,6 @@
   list-style: none;
 }
 
-/* .navtab__item {
-
-} */
-
 .navtab__link {
   font-weight: 500;
   font-size: 13px;
@@ -27,4 +23,15 @@
 
 .navtab__link:hover{
   opacity: .7;
+}
+
+@media screen and (max-width: 600px) {
+  .navtab__list {
+    gap: 24px;
+  }
+
+  .navtab__link {
+    font-size: 11px;
+    line-height: 1.45;
+  }
 }
