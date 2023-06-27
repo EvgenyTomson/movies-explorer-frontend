@@ -2,8 +2,6 @@ import { NavLink } from "react-router-dom";
 import './LoggedUserNavigation.css';
 
 const LoggedUserNavigation = ({ isBurger = false }) => {
-  console.log(isBurger)
-
   return (
     <>
       <ul className="navigation__list">
