@@ -1,13 +1,6 @@
 .saved-movies {
-  width: 100%;
   flex-grow: 1;
   padding: 60px 0 80px;
-}
-
-@media screen and (max-width: 1200px) {
-  .saved-movies {
-    padding: 80px 30px 80px;
-  }
 }
 
 @media screen and (max-width: 1200px) {
