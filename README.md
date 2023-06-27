@@ -1,5 +1,7 @@
 # movies-explorer-frontend
 
+Ссылка на [макет](https://disk.yandex.ru/d/TrLPGcNzFUbs0w)
+
 "devDependencies": {
   "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
 }
