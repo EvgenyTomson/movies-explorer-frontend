@@ -41,6 +41,13 @@
   background-image: url('../../images/checkbox-on.svg');
 }
 
-/* .checkbox_type_real:focus + .checkbox_type_custom {
-  border: 1px solid #fff;
-} */
+@media screen and (max-width: 600px) {
+  .checkbox {
+    font-size: 11px;
+    line-height: 1.63;
+  }
+
+  .checkbox_type_custom {
+    margin-right: 13px;
+  }
+}

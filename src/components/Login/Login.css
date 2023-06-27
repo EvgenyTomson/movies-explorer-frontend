@@ -72,7 +72,7 @@
 }
 
 .login__submit {
-  margin-top: 180px;
+  margin-top: 159px;
   padding: 0;
   height: 45px;
   font-style: normal;
@@ -121,4 +121,34 @@
 
 .register__link:hover {
   opacity: .7;
+}
+
+@media screen and (max-width: 420px) {
+  .register {
+    margin: 0;
+    max-width: 100%;
+    padding: 56px 30px 56px;
+    align-items: center;
+  }
+
+  .register__form {
+    width: 100%;
+  }
+
+  .register__input::placeholder {
+    font-size: 10px;
+  }
+
+  .login__submit {
+    margin-top: 247px;
+    font-size: 12px;
+  }
+
+  .register__text {
+    font-size: 12px;
+  }
+
+  .register__link {
+    font-size: 12px;
+  }
 }

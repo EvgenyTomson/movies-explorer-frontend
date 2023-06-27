@@ -1,4 +1,5 @@
 .movies {
+  flex-grow: 1;
   padding: 60px 0 80px;
 }
 
@@ -18,4 +19,16 @@
 
 .movies__more:hover {
   opacity: .8;
+}
+
+@media screen and (max-width: 1200px) {
+  .movies {
+    padding: 80px 30px 80px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .movies {
+    padding: 50px 10px 80px;
+  }
 }

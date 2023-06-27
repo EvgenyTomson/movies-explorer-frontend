@@ -45,3 +45,16 @@
 .seach__submit:hover {
   opacity: .8;
 }
+
+@media screen and (max-width: 900px) {
+  .search {
+    padding-bottom: 50px;
+    gap: 42px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .search {
+    padding: 0 4px 50px;
+  }
+}

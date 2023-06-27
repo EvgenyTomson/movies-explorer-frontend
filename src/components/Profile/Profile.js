@@ -62,12 +62,12 @@ const Profile = ({ onLogout }) => {
           <button
             type="submit"
             form="profile__form"
-            className="profile__button-submit"
+            className="profile__button profile__button_type_submit"
           >
             Редактировать
           </button>
           <button
-            className="profile__button-logout"
+            className="profile__button profile__button_type_logout"
             onClick={handleLogout}
           >
             Выйти из аккаунта

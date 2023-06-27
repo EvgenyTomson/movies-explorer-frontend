@@ -9,10 +9,14 @@
   --max-content-width: 1140px;
 }
 
-/* body,
+body,
 html {
-  box-sizing: border-box;
-} */
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
 
 .container {
   margin: 0 auto;
