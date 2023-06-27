@@ -1,37 +1,37 @@
+import { useState } from 'react';
+import Burger from './Burger/Burger';
+import BurgerMenu from './BurgerMenu/BurgerMenu';
+import LoggedUserNavigation from './LoggedUserNavigation/LoggedUserNavigation';
 import LoginRegisterMenu from './LoginRegisterMenu/LoginRegisterMenu';
 import './Navigation.css';
-import { NavLink } from "react-router-dom";
 
-const Navigation = ({  isLogged, isBurger = false }) => {
+const Navigation = ({ isLogged, isBurger = true }) => {
+  const [isBurgerOpened, setIsBurgerOpened] = useState(false);
+
+  const handleOpenBurgerMenu = () => {
+    setIsBurgerOpened(true);
+  }
+
+  const handleCloseBurgerMenu = () => {
+    setIsBurgerOpened(false);
+  }
 
   return (
-    <nav className="navigation">
-      <ul className="navigation__list">
-        { isBurger &&
-          <li className="navigation__item">
-            <NavLink to="/" className="navigation__link navigation__link_type_home">Гравная</NavLink>
-          </li>
-        }
+    <nav className={isLogged && !isBurger ? "navigation navigation_logged" : "navigation"}>
 
-        {
-          isLogged
-          ? <>
-              <li className="navigation__item">
-                <NavLink to="/movies" className="navigation__link">Фильмы</NavLink>
-              </li>
-              <li className="navigation__item">
-                <NavLink to="/saved-movies" className="navigation__link navigation__link_type_saved-movies">Сохранённые фильмы</NavLink>
-              </li>
-          </>
-          : null
-        }
-      </ul>
-
-      {
-        isLogged
-        ? <NavLink to="/profile" className="navigation__link navigation__link_type_profile">Аккаунт</NavLink>
+    {
+      isLogged
+        ? <>
+          <Burger onClick={handleOpenBurgerMenu}/>
+          <LoggedUserNavigation />
+        </>
         : <LoginRegisterMenu />
-      }
+    }
+
+    <BurgerMenu
+      isOpened={isBurgerOpened}
+      closeBurger={handleCloseBurgerMenu}
+    />
 
     </nav>
   )

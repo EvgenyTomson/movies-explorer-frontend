@@ -1,12 +1,18 @@
-.burger {
+.burger__button {
   display: none;
-}
-
-.burger_active {
-  display: block;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
   cursor: pointer;
+  transition: opacity .3s ease-in-out;
 }
 
-.burger_active:hover {
+.burger__button:hover {
   opacity: .7;
+}
+
+@media screen and (max-width: 860px) {
+  .burger__button {
+    display: block;
+  }
 }

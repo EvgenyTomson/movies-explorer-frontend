@@ -32,11 +32,6 @@ const AboutMe = () => {
             alt="Фотограция студента"
           />
         </div>
-        {/* <img
-          className="about-me__photo"
-          src={studentPhoto}
-          alt="Фотограция студента"
-        /> */}
       </div>
     </section>
   )

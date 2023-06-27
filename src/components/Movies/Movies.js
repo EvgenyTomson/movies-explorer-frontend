@@ -1,6 +1,7 @@
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
+// мок-данные фильмов для верстки
 import { moviesData } from '../../constants/listData';
 
 const Movies = () => {
