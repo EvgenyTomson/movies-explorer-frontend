@@ -17,7 +17,7 @@ const MoviesCard = ({ movieData }) => {
   return (
     <li className="movie-card">
       <a
-        className="movie__trailer"
+        className="movie-card__trailer"
         href={movieData.trailerLink}
         target="_blank"
         rel="noreferrer"

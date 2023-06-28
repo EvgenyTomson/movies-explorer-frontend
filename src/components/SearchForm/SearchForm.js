@@ -19,7 +19,7 @@ const SearchForm = () => {
       <form className="search__form">
         <fieldset className="search__request">
           <input
-            className="seach__input"
+            className="search__input"
             type="text"
             required
             placeholder="Фильм"
@@ -27,7 +27,7 @@ const SearchForm = () => {
             value={searchValue}
           />
           <button
-            className="seach__submit"
+            className="search__submit"
             type="submit"
           />
         </fieldset>

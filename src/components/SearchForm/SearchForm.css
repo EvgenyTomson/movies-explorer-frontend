@@ -27,7 +27,7 @@
   border: 0;
 }
 
-.seach__input {
+.search__input {
   width: 46px;
   padding: 14px 0;
   padding-left: 22px;
@@ -42,15 +42,15 @@
   border: 0;
 }
 
-.seach__input::placeholder {
+.search__input::placeholder {
   color: #8b8b8b;
 }
 
-.seach__input:focus {
+.search__input:focus {
   border: 2px solid #5762f1;
 }
 
-.seach__submit {
+.search__submit {
   height: 46px;
   width: 80px;
   background-color: transparent;
@@ -63,7 +63,7 @@
   transition: all .3s ease-in-out;
 }
 
-.seach__submit:hover {
+.search__submit:hover {
   opacity: .8;
 }
 

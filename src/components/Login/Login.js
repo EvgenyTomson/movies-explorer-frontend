@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 const Login = ({ onLogin }) => {
   const { values, handleChange, errors, isValid, resetForm, inputVilidities } = useFormWithValidation();
 
-  const defaultRegisterInputClassName = 'register__input';
-  const errorRegisterInputClassName = 'register__input register__input_type_error';
+  const defaultRegisterInputClassName = 'auth__input';
+  const errorRegisterInputClassName = 'auth__input auth__input_type_error';
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

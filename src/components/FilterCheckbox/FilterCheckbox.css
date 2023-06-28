@@ -11,14 +11,14 @@
   opacity: .7;
 }
 
-.checkbox_type_real {
+.checkbox__element_type_real {
   position: absolute;
   width: 0;
   height: 0;
   opacity: 0;
 }
 
-.checkbox_type_custom {
+.checkbox__element_type_custom {
   box-sizing: border-box;
   position: relative;
   margin-right: 12px;
@@ -29,7 +29,7 @@
   border-radius: 20px;
 }
 
-.checkbox_type_custom::before {
+.checkbox__element_type_custom::before {
   position: absolute;
   content: '';
   width: 36px;
@@ -43,7 +43,7 @@
   transition: all .3s ease-in-out;
 }
 
-.checkbox_type_real:checked + .checkbox_type_custom::before {
+.checkbox__element_type_real:checked + .checkbox__element_type_custom::before {
   background-image: url('../../images/checkbox-on.svg');
 }
 
@@ -53,7 +53,7 @@
     line-height: 1.63;
   }
 
-  .checkbox_type_custom {
+  .checkbox__element_type_custom {
     margin-right: 13px;
   }
 }

@@ -1,4 +1,4 @@
-.burger__button {
+.burger-button {
   display: none;
   box-sizing: border-box;
   width: 44px;
@@ -10,12 +10,12 @@
   transition: opacity .3s ease-in-out;
 }
 
-.burger__button:hover {
+.burger-button:hover {
   opacity: .7;
 }
 
 @media screen and (max-width: 860px) {
-  .burger__button {
+  .burger-button {
     display: block;
   }
 }

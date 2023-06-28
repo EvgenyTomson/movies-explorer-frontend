@@ -21,7 +21,7 @@ const BurgerMenu = ({ isOpened, closeBurger }) => {
           <NavLink to="/movies" className="burger__link">Фильмы</NavLink>
         </li>
         <li className="burger__item">
-          <NavLink to="/saved-movies" className="burger__link burgern__link_type_saved-movies">Сохранённые фильмы</NavLink>
+          <NavLink to="/saved-movies" className="burger__link burger__link_type_saved-movies">Сохранённые фильмы</NavLink>
         </li>
       </ul>
       <NavLink to="/profile" className="burger__link burger__link_type_profile">Аккаунт</NavLink>
