@@ -3,6 +3,12 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.28;
+  cursor: pointer;
+  transition: opacity .3s ease-in-out;
+}
+
+.checkbox:hover {
+  opacity: .7;
 }
 
 .checkbox_type_real {

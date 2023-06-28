@@ -1,16 +1,22 @@
 .saved-movies {
-  flex-grow: 1;
-  padding: 60px 0 80px;
+  /* flex-grow: 1; */
+  padding: 60px 0 214px;
 }
 
 @media screen and (max-width: 1200px) {
   .saved-movies {
-    padding: 80px 30px 80px;
+    padding: 77px 30px 214px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .saved-movies {
+    padding: 77px 30px 164px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .saved-movies {
-    padding: 50px 10px 80px;
+    padding: 76px 10px 138px;
   }
 }

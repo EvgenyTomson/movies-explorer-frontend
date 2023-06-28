@@ -15,24 +15,28 @@ const SearchForm = () => {
   }
 
   return (
-    <div className="search">
+    <section className="search">
       <form className="search__form">
-        <input
-          className="seach__input"
-          placeholder="Фильм"
-          onChange={handleChange}
-          value={searchValue}
-        />
-        <button
-          className="seach__submit"
-          type="submit"
+        <fieldset className="search__request">
+          <input
+            className="seach__input"
+            type="text"
+            required
+            placeholder="Фильм"
+            onChange={handleChange}
+            value={searchValue}
+          />
+          <button
+            className="seach__submit"
+            type="submit"
+          />
+        </fieldset>
+        <FilterCheckbox
+          checkHandler={handleShortsCheck}
+          isChecked={isShortsChecked}
         />
       </form>
-      <FilterCheckbox
-        checkHandler={handleShortsCheck}
-        isChecked={isShortsChecked}
-      />
-    </div>
+    </section>
   )
 };
 

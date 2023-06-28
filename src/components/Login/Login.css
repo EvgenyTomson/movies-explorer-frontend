@@ -1,34 +1,34 @@
-.register {
+.auth {
   max-width: 396px;
   padding: 70px 0 70px;
   display: flex;
   flex-direction: column;
 }
 
-.register__title {
+.auth__title {
   margin: 0;
   margin-top: 40px;
   font-size: 24px;
   font-weight: 500;
 }
 
-.register__form {
+.auth__form {
   margin-top: 40px;
   box-sizing: border-box;
-  width: 358px;
+  width: 396px;
   padding: 0;
   display: flex;
   flex-direction: column;
 }
 
-.register__field {
+.auth__field {
   display: flex;
   flex-direction: column;
   color: #8b8b8b;
   font-size: 10px;
 }
 
-.register__input {
+.auth__input {
   padding: 15px;
   margin-top: 10px;
   font-size: 13px;
@@ -40,22 +40,22 @@
   background-color: #2F2F2F;
 }
 
-.register__input::placeholder {
+.auth__input::placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   color: #ccc;
 }
 
-.register__input:focus {
+.auth__input:focus {
   outline: 2px solid #5762f1;
 }
 
-.register__input_type_error {
+.auth__input_type_error {
   border: 1px solid #ee3465;
 }
 
-.register__error {
+.auth__error {
   margin-top: 10px;
   min-height: 10px;
   font-style: normal;
@@ -67,11 +67,11 @@
   transition: 0.3s ease-in-out;
 }
 
-.register__error_visible {
+.auth__error_visible {
   opacity: 1;
 }
 
-.login__submit {
+.auth__submit {
   margin-top: 159px;
   padding: 0;
   height: 45px;
@@ -88,18 +88,18 @@
   cursor: pointer;
 }
 
-.login__submit:hover {
+.auth__submit:hover {
   opacity: .8;
 }
 
-.login__submit_disabled {
+.auth__submit_disabled {
   color: #c2c2c2;
   background-color: #f8f8f8;
   cursor: default;
   pointer-events: none;
 }
 
-.register__text {
+.auth__text {
   margin: 16px 0 0;
   font-weight: 400;
   font-size: 14px;
@@ -108,7 +108,7 @@
   color: #8b8b8b;
 }
 
-.register__link {
+.auth__link {
   margin-left: 6px;
   color: #4285f4;
   text-align: center;
@@ -119,36 +119,51 @@
   transition: all .3s ease-in-out;
 }
 
-.register__link:hover {
+.auth__link:hover {
   opacity: .7;
 }
 
+
+@media screen and (max-width: 860px) {
+  .auth {
+    padding: 232px 30px 56px;
+  }
+}
+
+
+
 @media screen and (max-width: 420px) {
-  .register {
+  .auth {
     margin: 0;
     max-width: 100%;
     padding: 56px 30px 56px;
     align-items: center;
   }
 
-  .register__form {
-    width: 100%;
+  .auth__title {
+    margin-top: 48px;
   }
 
-  .register__input::placeholder {
+  .auth__form {
+    width: 100%;
+    margin-top: 82px;
+  }
+
+  .auth__input::placeholder {
     font-size: 10px;
   }
 
-  .login__submit {
+  .auth__submit {
     margin-top: 247px;
     font-size: 12px;
   }
 
-  .register__text {
+  .auth__text {
+    margin-top: 14px;
     font-size: 12px;
   }
 
-  .register__link {
+  .auth__link {
     font-size: 12px;
   }
 }

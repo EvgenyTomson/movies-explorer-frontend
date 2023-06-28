@@ -14,6 +14,8 @@
   line-height: 16px;
   color: inherit;
   text-decoration: none;
+  background-color: transparent;
+  border: 0;
   cursor: pointer;
   transition: all .3s ease-in-out;
 }

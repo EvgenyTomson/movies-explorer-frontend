@@ -16,11 +16,11 @@ const Login = ({ onLogin }) => {
   }
 
   return (
-    <section className="register container">
+    <main className="auth container">
       <Logo />
-      <h2 className="register__title">Рады видеть!</h2>
-      <form action="#" className="register__form" name="login" noValidate onSubmit={handleSubmit} >
-        <label htmlFor="email" className="register__field">
+      <h1 className="auth__title">Рады видеть!</h1>
+      <form action="#" className="auth__form" name="login" noValidate onSubmit={handleSubmit} >
+        <label htmlFor="email" className="auth__field">
           E-mail
           <input
             type="email"
@@ -38,9 +38,9 @@ const Login = ({ onLogin }) => {
             onChange={handleChange}
             value={values.email || ""}
           />
-          <span className="register__error" >{errors.email}</span>
+          <span className="auth__error" >{errors.email}</span>
         </label>
-        <label htmlFor="password" className="register__field">
+        <label htmlFor="password" className="auth__field">
           Пароль
           <input
             type="password"
@@ -58,20 +58,20 @@ const Login = ({ onLogin }) => {
             onChange={handleChange}
             value={values.password || ""}
           />
-          <span className="register__error" >{errors.password}</span>
+          <span className="auth__error" >{errors.password}</span>
         </label>
         <button
-          className={isValid ? "login__submit": "login__submit login__submit_disabled"}
+          className={isValid ? "auth__submit": "auth__submit auth__submit_disabled"}
           type="submit"
           disabled={!isValid}
         >
           Войти
         </button>
-        <p className="register__text">
-          Ещё не зарегистрированы? <Link to="/signup" className="register__link">Регистрация</Link>
+        <p className="auth__text">
+          Ещё не зарегистрированы? <Link to="/signup" className="auth__link">Регистрация</Link>
         </p>
       </form>
-    </section>
+    </main>
   )
 };
 

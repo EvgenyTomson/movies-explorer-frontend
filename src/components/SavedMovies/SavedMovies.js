@@ -26,14 +26,14 @@ const SavedMovies = () => {
   }, [])
 
   return (
-    <section className="saved-movies container">
+    <main className="saved-movies container">
       <SearchForm />
       {isLoadind
         ? <Preloader />
         : <MoviesCardList moviesData={savedMoviesData}/>
       }
       {/* <MoviesCardList moviesData={savedMoviesData}/> */}
-    </section>
+    </main>
   )
 };
 

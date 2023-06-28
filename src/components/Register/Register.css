@@ -16,7 +16,7 @@
 .register__form {
   margin-top: 40px;
   box-sizing: border-box;
-  width: 358px;
+  width: 396px;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -73,7 +73,7 @@
 }
 
 .register__submit {
-  margin-top: 69px;
+  margin-top: 74px;
   padding: 0;
   height: 45px;
   font-style: normal;
@@ -124,6 +124,12 @@
   opacity: .7;
 }
 
+@media screen and (max-width: 860px) {
+  .register {
+    padding: 232px 30px 56px;
+  }
+}
+
 @media screen and (max-width: 420px) {
   .register {
     margin: 0;
@@ -132,8 +138,13 @@
     align-items: center;
   }
 
+  .register__title {
+    margin-top: 48px;
+  }
+
   .register__form {
     width: 100%;
+    margin-top: 82px;
   }
 
   .register__input::placeholder {
@@ -141,11 +152,12 @@
   }
 
   .register__submit {
-    margin-top: 157px;
+    margin-top: 162px;
     font-size: 12px;
   }
 
   .register__text {
+    margin-top: 13px;
     font-size: 12px;
   }
 

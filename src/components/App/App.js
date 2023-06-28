@@ -9,6 +9,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import { useState } from 'react';
 import Layout from '../Layout/Layout';
+import Header from '../Header/Header';
 
 const App = () => {
   const [isLogged, setIsLogged] = useState(false);
@@ -61,9 +62,10 @@ const App = () => {
         <Route
           path="/profile"
           element={
-            <Layout isLogged={isLogged}>
+            <>
+              <Header isLogged={isLogged}/>
               <Profile onLogout={handleLogout} />
-            </Layout>
+            </>
           }
         />
         <Route path="*" element={<Navigate to="/404" replace/>} />

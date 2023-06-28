@@ -21,6 +21,8 @@ const AboutMe = () => {
           <a
             href="https://github.com/EvgenyTomson"
             className="about-me__github"
+            target="_blank"
+            rel="noreferrer"
           >
             Github
           </a>
@@ -29,6 +31,7 @@ const AboutMe = () => {
           <img
             className="about-me__photo"
             src={studentPhoto}
+            // src='https://planetofhotels.com/guide/sites/default/files/styles/paragraph__text_with_image___twi_image/public/2021-01/Geirangerfjord.jpg'
             alt="Фотограция студента"
           />
         </div>

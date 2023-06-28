@@ -1,24 +1,28 @@
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './LoginRegisterMenu.css';
 
 const LoginRegisterMenu = () => {
+  const navigate = useNavigate();
+
   return (
     <ul className="login-register-menu">
       <li className="login-register-menu__item">
-        <NavLink
-          to="/signup"
+        <button
+          type="button"
+          onClick={() => navigate("/signup")}
           className="login-register-menu__link"
         >
           Регистрация
-        </NavLink>
+        </button>
       </li>
       <li className="login-register-menu__item">
-        <NavLink
-          to="/signin"
+        <button
+          type="button"
+          onClick={() => navigate("/signin")}
           className="login-register-menu__link login-register-menu__link_type_login"
         >
           Войти
-        </NavLink>
+        </button>
       </li>
     </ul>
   )

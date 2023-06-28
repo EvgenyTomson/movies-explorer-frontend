@@ -16,9 +16,9 @@ const Register = ({ onRegister }) => {
   }
 
   return (
-    <section className="register container">
+    <main className="register container">
       <Logo />
-      <h2 className="register__title">Добро пожаловать!</h2>
+      <h1 className="register__title">Добро пожаловать!</h1>
       <form action="#" className="register__form" name="register" noValidate onSubmit={handleSubmit} >
         <label htmlFor="name" className="register__field">
           Имя
@@ -91,7 +91,7 @@ const Register = ({ onRegister }) => {
           Уже зарегистрированы? <Link to="/signin" className="register__link">Войти</Link>
         </p>
       </form>
-    </section>
+    </main>
   )
 };
 

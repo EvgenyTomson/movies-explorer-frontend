@@ -5,6 +5,7 @@
 
 .movies__more {
   width: 100%;
+  margin-top: 50px;
   padding: 11px 0 9px;
   font-weight: 500;
   font-size: 12px;
@@ -27,8 +28,14 @@
   }
 }
 
+@media screen and (max-width: 900px) {
+  .movies {
+    padding: 77px 30px 80px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .movies {
-    padding: 50px 10px 80px;
+    padding: 77px 10px 80px;
   }
 }

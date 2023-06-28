@@ -27,7 +27,7 @@ const Movies = () => {
 
 
   return (
-    <section className="movies container">
+    <main className="movies container">
       <SearchForm />
       {isLoadind
         ? <Preloader />
@@ -37,7 +37,7 @@ const Movies = () => {
       <button className="movies__more" type="button">
         Ещё
       </button>
-    </section>
+    </main>
   )
 };
 

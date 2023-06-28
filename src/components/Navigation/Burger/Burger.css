@@ -1,5 +1,8 @@
 .burger__button {
   display: none;
+  box-sizing: border-box;
+  width: 44px;
+  height: 40px;
   padding: 0;
   background-color: transparent;
   border: 0;

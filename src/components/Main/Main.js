@@ -8,14 +8,14 @@ import Techs from './Techs/Techs';
 
 const Main = () => {
   return (
-    <section className="main">
+    <main className="main">
       <Promo />
       <NavTab />
       <AboutProject />
       <Techs />
       <AboutMe />
       <Portfolio />
-    </section>
+    </main>
   )
 };
 

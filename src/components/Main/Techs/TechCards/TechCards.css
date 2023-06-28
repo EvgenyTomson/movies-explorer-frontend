@@ -48,6 +48,8 @@
 
 @media screen and (max-width: 360px) {
   .tech__cards {
-    margin: 50px 53px 0;
+    margin: 48px 53px 0;
+    justify-content: flex-start;
+    gap: 8px;
   }
 }
