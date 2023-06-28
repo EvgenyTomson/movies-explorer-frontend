@@ -1,5 +1,5 @@
 .error {
-  padding: 246px 0 60px;
+  padding: 250px 0 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,14 +7,14 @@
 
 .error_title {
   margin: 0;
-  font-weight: 500;
+  font-weight: 400;
   text-align: center;
   font-size: 140px;
 }
 
 .error__text {
   margin: 0;
-  margin-top: 5px;
+  margin-top: 9px;
   text-align: center;
   font-weight: 400;
   font-size: 16px;
@@ -36,13 +36,17 @@
 
 @media screen and (max-width: 900px) {
   .error {
-    padding: 400px 30px 220px;
+    padding: 412px 30px 220px;
+  }
+
+  .error__back {
+    margin-top: 185px;
   }
 }
 
 @media screen and (max-width: 540px) {
   .error {
-    padding: 329px 30px 30px;
+    padding: 332px 30px 30px;
   }
 
   .error_title {
@@ -50,11 +54,12 @@
   }
 
   .error__text {
-    margin-top: 10px;
+    margin-top: 13px;
     font-size: 12px;
   }
 
   .error__back {
+    margin-top: 284px;
     font-size: 12px;
   }
 }

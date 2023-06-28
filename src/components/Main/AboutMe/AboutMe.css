@@ -56,18 +56,14 @@
 
 .about-me__photo-wrapper {
   flex-shrink: 0;
-  /* max-width: 270px; */
   width: 270px;
-  /* height: 100%; */
   border-radius: 10px;
 }
 
 .about-me__photo {
   display: block;
   border-radius: 10px;
-
   width: 100%;
-
   object-fit: contain;
   object-position: center;
   aspect-ratio: 5 / 6;

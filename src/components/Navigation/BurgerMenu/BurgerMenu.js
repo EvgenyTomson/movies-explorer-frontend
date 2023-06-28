@@ -15,7 +15,7 @@ const BurgerMenu = ({ isOpened, closeBurger }) => {
       </button>
       <ul className="burger__list">
         <li className="burger__item">
-          <NavLink to="/" className="burger__link burger__link_type_home">Гравная</NavLink>
+          <NavLink to="/" className="burger__link burger__link_type_home">Главная</NavLink>
         </li>
         <li className="burger__item">
           <NavLink to="/movies" className="burger__link">Фильмы</NavLink>

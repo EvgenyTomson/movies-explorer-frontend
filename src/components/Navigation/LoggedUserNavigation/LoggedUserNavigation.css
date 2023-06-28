@@ -41,14 +41,6 @@
   opacity: .7;
 }
 
-/* nav .active {
-  border-bottom: 2px solid #fff;
-} */
-
-/* .navigation__link:not(.navigation__link_type_profile) .active {
-  border-bottom: 2px solid #fff;
-} */
-
 @media screen and (max-width: 860px) {
   .navigation__list {
     display: none;

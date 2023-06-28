@@ -11,15 +11,6 @@
   --max-content-width: 1140px;
 }
 
-body,
-html {
-  height: 100%;
-}
-
-#root {
-  height: 100%;
-}
-
 .container {
   margin: 0 auto;
   max-width: var(--max-content-width);
