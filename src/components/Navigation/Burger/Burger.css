@@ -2,12 +2,16 @@
   display: none;
   box-sizing: border-box;
   width: 44px;
-  height: 40px;
+  height: 44px;
   padding: 0;
   background-color: transparent;
   border: 0;
   cursor: pointer;
   transition: opacity .3s ease-in-out;
+  background-image: url("../../../images/burger.svg");
+  background-size: 44px 44px;
+  background-position: top -4px right 0;
+  background-repeat: no-repeat;
 }
 
 .burger-button:hover {

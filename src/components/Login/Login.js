@@ -31,6 +31,7 @@ const Login = ({ onLogin }) => {
             }
             name="email"
             required
+            id="email"
             autoComplete="off"
             placeholder="Email"
             minLength="2"
@@ -51,6 +52,7 @@ const Login = ({ onLogin }) => {
             }
             name="password"
             required
+            id="password"
             autoComplete="off"
             placeholder="Пароль"
             minLength="2"

@@ -31,6 +31,7 @@ const Register = ({ onRegister }) => {
             }
             name="name"
             required
+            id="name"
             autoComplete="off"
             placeholder="Имя"
             minLength="2"
@@ -51,6 +52,7 @@ const Register = ({ onRegister }) => {
             }
             name="email"
             required
+            id="email"
             autoComplete="off"
             placeholder="Email"
             minLength="2"
@@ -71,6 +73,7 @@ const Register = ({ onRegister }) => {
             }
             name="password"
             required
+            id="password"
             autoComplete="off"
             placeholder="Пароль"
             minLength="2"

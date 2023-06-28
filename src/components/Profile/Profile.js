@@ -78,7 +78,6 @@ const Profile = ({ onLogout }) => {
             : <div className="profile__buttons">
                 <button
                   type="button"
-                  form="profile__form"
                   className="profile__button profile__button_type_edit"
                   onClick={handleMakeEditable}
                 >

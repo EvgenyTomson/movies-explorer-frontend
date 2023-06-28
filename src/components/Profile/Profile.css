@@ -116,7 +116,7 @@
 
 @media screen and (max-width: 900px) {
   .profile {
-    padding: 236px 30px 269px;
+    padding: 230px 30px 269px;
   }
 
   .profile__form {
@@ -124,17 +124,17 @@
   }
 
   .profile__buttons {
-    margin-top: 188px;
+    margin-top: 192px;
   }
 
   .profile__submit {
-    margin-top: 188px;
+    margin-top: 192px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .profile {
-    padding: 68px 30px 40px;
+    padding: 64px 30px 40px;
   }
 
   .profile__form {
