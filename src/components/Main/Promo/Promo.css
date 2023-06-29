@@ -1,0 +1,42 @@
+.promo {
+  padding: 184px 0 224px;
+  background-color: var(--promo-bg-color);
+  background-image: url("../../../images/hero-background.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.promo__title {
+  margin: 0 auto;
+  display: block;
+  max-width: 730px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.16;
+  letter-spacing: -2px;
+}
+
+@media screen and (max-width: 1200px) {
+  .promo {
+    padding: 326px 19px 342px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .promo {
+    padding: 207px 10px 242px;
+  }
+
+  .promo__title {
+    font-size: 31px;
+  line-height: 1.26;
+  letter-spacing: -1.24px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .promo {
+    background-size: 248px 248px;
+  }
+}
