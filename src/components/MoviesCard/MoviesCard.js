@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { convertDuration } from '../../utils/utils';
 import MovieCardButton from './MovieCardButton/MovieCardButton';
 import './MoviesCard.css';
+import { moviesImgsBaseUrl } from '../../constants/constants';
 
 const MoviesCard = ({ movieData }) => {
   const { pathname } = useLocation();
@@ -24,7 +25,7 @@ const MoviesCard = ({ movieData }) => {
       >
         <img
           className="movie-card__image"
-          src={movieData.image}
+          src={`${moviesImgsBaseUrl}${movieData.image.url}`}
           alt={movieData.nameRU}
         />
       </a>

@@ -9,7 +9,8 @@
   list-style: none;
 }
 
-@media screen and (max-width: 1080px) {
+/* @media screen and (max-width: 1080px) { */
+@media screen and (max-width: 900px) {
   .movies-list {
     grid-template-columns: repeat(2, 1fr);
     gap: 47px 30px;

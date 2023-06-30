@@ -14,9 +14,19 @@ const SearchForm = () => {
     setIsShortsChecked(!isShortsChecked);
   }
 
+  const handleSearchSubmit = (evt) => {
+    evt.preventDefault();
+    console.log('Шортс: ', isShortsChecked, 'Запрос: ', searchValue);
+
+    localStorage.setItem('search', JSON.stringify({querry: searchValue, withShorts: isShortsChecked}));
+  }
+
   return (
     <section className="search">
-      <form className="search__form">
+      <form
+        className="search__form"
+        onSubmit={handleSearchSubmit}
+      >
         <fieldset className="search__request">
           <input
             className="search__input"

@@ -17,3 +17,16 @@ export const apiRequestEmulation = (isFail = false) => {
     }, 500)
   })
 }
+
+
+export const getCardsAmount = () => {
+  const screenWidth = window.innerWidth;
+
+  if (screenWidth <= 600) {
+    return {totalCards: 5, extraCards: 2};
+  } else if (screenWidth <= 900) {
+    return {totalCards: 8, extraCards: 2};
+  }
+
+  return {totalCards: 12, extraCards: 3};
+}
