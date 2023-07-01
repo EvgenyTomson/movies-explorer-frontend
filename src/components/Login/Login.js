@@ -1,17 +1,41 @@
 import './Login.css';
 import Logo from '../Logo/Logo';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { mainApi } from '../../utils/MainApi';
+import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider';
 
-const Login = ({ onLogin }) => {
+const Login = ({ onLogin, setLoginStatus }) => {
+  const { setCurrentUser} = useCurrentUserContext();
+
   const { values, handleChange, errors, isValid, resetForm, inputVilidities } = useFormWithValidation();
+
+  const navigate = useNavigate();
+
 
   const defaultRegisterInputClassName = 'auth__input';
   const errorRegisterInputClassName = 'auth__input auth__input_type_error';
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onLogin();
+
+    console.log('signin values: ', values);
+
+    mainApi.signin(values)
+    .then((userData) => {
+      console.log('signin userData: ', userData);
+
+      setCurrentUser(userData);
+
+      setLoginStatus(true);
+
+      navigate("/movies", {replace: true});
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+    // onLogin();
     resetForm();
   }
 

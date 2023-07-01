@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import './Profile.css';
+import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider';
+import { useNavigate } from 'react-router-dom';
+import { mainApi } from '../../utils/MainApi';
 
-const Profile = ({ onLogout }) => {
-  const [user, setUser] = useState({name: 'Виталий', email: 'user@mail.ru'});
+const Profile = ({ onLogout, setLoginStatus }) => {
+  const {currentUser, setCurrentUser} = useCurrentUserContext();
+
+  // const [user, setUser] = useState({name: 'Виталий', email: 'user@mail.ru'});
+
+  const navigate = useNavigate();
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -12,7 +19,7 @@ const Profile = ({ onLogout }) => {
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
-    setUser({...user, [name]: value});
+    // setUser({...user, [name]: value});
   }
 
   const handleSubmit = (e) => {
@@ -22,13 +29,23 @@ const Profile = ({ onLogout }) => {
   }
 
   const handleLogout = () => {
-    onLogout();
+
+    mainApi.logoutUser()
+    .then(() => {
+      console.log('logout success');
+
+      setCurrentUser(null);
+      setLoginStatus(false);
+      navigate("/", {replace: true});
+    })
+
+    // onLogout();
   }
 
   return (
     <main className="profile container">
       <h1 className="profile__title">
-        {`Привет, ${user.name}!`}
+        {`Привет, ${currentUser.name}!`}
       </h1>
 
       <form
@@ -46,7 +63,7 @@ const Profile = ({ onLogout }) => {
             name="name"
             className="profile__input"
             placeholder="Укажите имя"
-            value={user.name || ''}
+            value={currentUser.name || ''}
             onChange={handleChange}
             minLength={2}
             maxLength={30}
@@ -63,7 +80,7 @@ const Profile = ({ onLogout }) => {
             name="email"
             className="profile__input"
             placeholder="Укажите почту"
-            value={user.email || ''}
+            value={currentUser.email || ''}
             onChange={handleChange}
           />
         </label>

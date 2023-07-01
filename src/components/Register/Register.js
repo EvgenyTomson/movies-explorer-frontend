@@ -1,17 +1,51 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import './Register.css';
 import Logo from '../Logo/Logo';
+import { mainApi } from '../../utils/MainApi';
+import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider';
+// import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider';
 
-const Register = ({ onRegister }) => {
+const Register = ({ onRegister, setLoginStatus }) => {
   const { values, handleChange, errors, isValid, resetForm, inputVilidities } = useFormWithValidation();
+
+  const navigate = useNavigate();
+
+  const { setCurrentUser } = useCurrentUserContext();
+  // console.log(currentUser, setCurrentUser);
 
   const defaultRegisterInputClassName = 'register__input';
   const errorRegisterInputClassName = 'register__input register__input_type_error';
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onRegister();
+    // onRegister();
+
+    console.log('signup values: ', values);
+
+    mainApi.signup(values)
+    .then((userData) => {
+      console.log('signup userData: ', userData);
+
+      navigate("/signin", {replace: true});
+
+      // ели регистрация успешна - сразу авторизуемся и переходим на Фильмы
+      // return mainApi.signin(values)
+      // .then((userData) => {
+      //   console.log('signin userData: ', userData);
+
+      //   setCurrentUser(userData);
+
+      //   setLoginStatus(true);
+
+      //   navigate("/movies", {replace: true});
+      // })
+
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
     resetForm();
   }
 

@@ -10,10 +10,13 @@ import Login from '../Login/Login';
 import { useState } from 'react';
 import Layout from '../Layout/Layout';
 import Header from '../Header/Header';
+import { CurrentUserContextProvider } from '../../contexts/CurrentUserContextProvider';
 
 const App = () => {
   const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
+
+  const [currentUser, setCurrentUser] = useState({name: 'Вася', email: 'user@mail.ru'});
 
   // Временная логика для имитации авторизации:
   const handleRegestration = () => {
@@ -32,6 +35,10 @@ const App = () => {
 
   return (
     <div className="body">
+      <CurrentUserContextProvider
+        context={{ currentUser, setCurrentUser }}
+      >
+
       <Routes>
         <Route
           path="/"
@@ -42,7 +49,7 @@ const App = () => {
           }
         />
         <Route path="/signup" element={<Register onRegister={handleRegestration} />} />
-        <Route path="/signin" element={<Login onLogin={handleLogin} />} />
+        <Route path="/signin" element={<Login onLogin={handleLogin} setLoginStatus={setIsLogged} />} />
         <Route
           path="/movies"
           element={
@@ -64,13 +71,15 @@ const App = () => {
           element={
             <>
               <Header isLogged={isLogged}/>
-              <Profile onLogout={handleLogout} />
+              <Profile onLogout={handleLogout} setLoginStatus={setIsLogged} />
             </>
           }
         />
         <Route path="*" element={<Navigate to="/404" replace/>} />
         <Route path="/404" element={<NotFound />} />
       </Routes>
+
+      </CurrentUserContextProvider>
     </div>
   );
 }
