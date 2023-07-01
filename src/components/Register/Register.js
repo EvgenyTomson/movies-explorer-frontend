@@ -27,21 +27,19 @@ const Register = ({ onRegister, setLoginStatus }) => {
     .then((userData) => {
       console.log('signup userData: ', userData);
 
-      navigate("/signin", {replace: true});
-
-      // ели регистрация успешна - сразу авторизуемся и переходим на Фильмы
-      // return mainApi.signin(values)
-      // .then((userData) => {
-      //   console.log('signin userData: ', userData);
-
-      //   setCurrentUser(userData);
-
-      //   setLoginStatus(true);
-
-      //   navigate("/movies", {replace: true});
-      // })
-
+      // если регистрация успешна - сразу авторизуемся и переходим на Фильмы
+      const { email, password } = values;
+      return mainApi.signin({ email, password })
     })
+      .then((userData) => {
+        console.log('signin userData: ', userData);
+
+        setCurrentUser(userData);
+        setLoginStatus(true);
+
+        navigate("/movies", {replace: true});
+      })
+
     .catch(err => {
       console.log(err);
     })

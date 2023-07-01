@@ -48,7 +48,7 @@ const App = () => {
             </Layout>
           }
         />
-        <Route path="/signup" element={<Register onRegister={handleRegestration} />} />
+        <Route path="/signup" element={<Register onRegister={handleRegestration} setLoginStatus={setIsLogged} />} />
         <Route path="/signin" element={<Login onLogin={handleLogin} setLoginStatus={setIsLogged} />} />
         <Route
           path="/movies"

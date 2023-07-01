@@ -30,6 +30,8 @@ class MainApi {
   }
 
   signin(userData) {
+    console.log('signin userData: ', userData);
+
     return fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
       credentials: 'include',
