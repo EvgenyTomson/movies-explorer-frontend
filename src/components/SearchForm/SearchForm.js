@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css'
 
-const SearchForm = () => {
-  const [searchValue, setSearchValue] = useState('');
-  const [isShortsChecked, setIsShortsChecked] = useState(false);
+const SearchForm = ({ searchParams, handleSubmit }) => {
+  const [searchValue, setSearchValue] = useState(searchParams.querry);//useState('');
+  const [isShortsChecked, setIsShortsChecked] = useState(searchParams.includeShorts);//useState(false);
 
   const handleChange = ({ target }) => {
     setSearchValue(target.value);
@@ -14,23 +14,22 @@ const SearchForm = () => {
     setIsShortsChecked(!isShortsChecked);
   }
 
-  const handleSearchSubmit = (evt) => {
-    evt.preventDefault();
-    console.log('Шортс: ', isShortsChecked, 'Запрос: ', searchValue);
-
-    localStorage.setItem('search', JSON.stringify({querry: searchValue, withShorts: isShortsChecked}));
-  }
+  useEffect(() => {
+    setSearchValue(searchParams.querry);
+    setIsShortsChecked(searchParams.includeShorts);
+  }, [searchParams])
 
   return (
     <section className="search">
       <form
         className="search__form"
-        onSubmit={handleSearchSubmit}
+        onSubmit={handleSubmit}
       >
         <fieldset className="search__request">
           <input
             className="search__input"
             type="text"
+            name="querry"
             required
             placeholder="Фильм"
             onChange={handleChange}

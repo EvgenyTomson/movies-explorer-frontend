@@ -1,4 +1,6 @@
 .saved-movies {
+  width: 100%;
+  box-sizing: border-box;
   padding: 60px 0 214px;
 }
 

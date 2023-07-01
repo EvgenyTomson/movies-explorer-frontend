@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export function useDebouncedFunction(func, delay) {
+export function useDebouncedFunction(func, delay = 400) {
   const ref = useRef(null);
 
   return (...args) => {
