@@ -6,6 +6,8 @@ import Preloader from '../Preloader/Preloader';
 import { moviesApi } from '../../utils/MoviesApi';
 import { getCardsAmount, movieFilter } from '../../utils/utils';
 import { useDebouncedFunction } from '../../hooks/useDebouncedFunction';
+import { useSavedMoviesContext } from '../../contexts/SavedMoviesContextProvider';
+import { mainApi } from '../../utils/MainApi';
 
 
 const Movies = () => {
@@ -17,6 +19,24 @@ const Movies = () => {
 
   const [searchParams, setSearchParams] = useState({querry: '', includeShorts: false});
   const [serachedMovies, setSearchedMovies] = useState([]);
+
+
+  const { setSavedMovies } = useSavedMoviesContext();
+
+  useEffect(() => {
+    setIsLoading(true);
+    mainApi.getSavedMovies()
+      .then(res => {
+        console.log(res);
+        setSavedMovies(res);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+  }, [setSavedMovies])
 
   const handleResize = () => {
     // console.log('resize', cardsAmount);
@@ -105,7 +125,7 @@ const Movies = () => {
       />
       {isLoadind
         ? <Preloader />
-        : <MoviesCardList moviesData={displayedMovies}/>
+        : <MoviesCardList moviesData={displayedMovies} />
       }
       {/* <MoviesCardList moviesData={moviesData}/> */}
 

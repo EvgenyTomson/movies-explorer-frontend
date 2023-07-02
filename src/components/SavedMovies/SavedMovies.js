@@ -7,17 +7,18 @@ import { useEffect, useState } from 'react';
 import Preloader from '../Preloader/Preloader';
 import { mainApi } from '../../utils/MainApi';
 import { movieFilter } from '../../utils/utils';
+import { useSavedMoviesContext } from '../../contexts/SavedMoviesContextProvider';
 
 const SavedMovies = () => {
   const [isLoadind, setIsLoading] = useState(false);
 
-  const [savedMovies, setSavedMovies] = useState([]);
+  // const [savedMovies, setSavedMovies] = useState([]);
+  const { savedMovies, setSavedMovies } = useSavedMoviesContext();
 
   const [searchedSavedMovies, setSearchedSavedMovies] = useState([]);
 
   const [searchParams, setSearchParams] = useState({querry: '', includeShorts: false});
 
-  // Эмилируем загрузку фильмов
   useEffect(() => {
     setIsLoading(true);
     mainApi.getSavedMovies()
@@ -31,12 +32,12 @@ const SavedMovies = () => {
       .finally(() => {
         setIsLoading(false);
       })
-  }, [])
+  }, [setSavedMovies])
 
   const handleSearchSubmit = (evt) => {
     evt.preventDefault();
     const {querry, shorts} = evt.target.elements;
-    console.log(querry.value, shorts.checked);
+    // console.log(querry.value, shorts.checked);
 
     const currentSearch = {querry: querry.value, includeShorts: shorts.checked};
 
@@ -49,9 +50,12 @@ const SavedMovies = () => {
     //   setSearchedSavedMovies(savedMovies);
     //   return;
     // }
+    // console.log('EFFECT: ', searchParams);
 
     const currentSearchedMovies = savedMovies.filter(movie => movieFilter(movie, searchParams));
-    console.log('currentSearchedMovies: ', currentSearchedMovies);
+
+    // console.log('currentSearchedMovies: ', currentSearchedMovies);
+
     setSearchedSavedMovies(currentSearchedMovies);
   }, [searchParams, savedMovies])
 
@@ -65,7 +69,7 @@ const SavedMovies = () => {
       />
       {isLoadind
         ? <Preloader />
-        : <MoviesCardList moviesData={searchedSavedMovies}/>
+        : <MoviesCardList moviesData={searchedSavedMovies} />
       }
       {/* <MoviesCardList moviesData={savedMoviesData}/> */}
     </main>

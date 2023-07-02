@@ -4,9 +4,19 @@ import MovieCardButton from './MovieCardButton/MovieCardButton';
 import './MoviesCard.css';
 import { moviesImgsBaseUrl } from '../../constants/constants';
 import { mainApi } from '../../utils/MainApi';
+import { useSavedMoviesContext } from '../../contexts/SavedMoviesContextProvider';
+import { useEffect, useState } from 'react';
 
-const MoviesCard = ({ movieData }) => {
+const MoviesCard = ({ movieData, deleteMovieHandler }) => {
+  const { savedMovies, setSavedMovies } = useSavedMoviesContext();
+
   const { pathname } = useLocation();
+
+  const [isMovieSaved, setIsMovieSaved] = useState(false);
+
+  useEffect(() => {
+    setIsMovieSaved(savedMovies.some(movie => movie.movieId === movieData.id || movie.movieId === movieData.movieId));
+  }, [savedMovies, movieData])
 
   const saveMovieHandler = () => {
     const savingMovieData = {
@@ -20,22 +30,30 @@ const MoviesCard = ({ movieData }) => {
     delete savingMovieData.created_at;
     delete savingMovieData.updated_at;
 
-    console.log('Movie data: ', movieData);
-    console.log('Movie saved: ', savingMovieData);
+    // console.log('Movie data: ', movieData);
+    // console.log('Movie saved: ', savingMovieData);
 
     mainApi.saveMovie(savingMovieData)
       .then(movie => {
-        console.log('movie: ', movie);
+        console.log('movie: ', movie, 'savedMovies: ', savedMovies);
+
+        setSavedMovies([...savedMovies, movie]);
       })
       .catch(err => {
         console.log(err);
       })
   }
 
-  const deleteMovieHandler = () => {
-    console.log('Movie deleted');
+  const onDeleteMovie = () => {
+    const deleteParam = pathname === '/movies'
+      ? { param: 'id', value: movieData.id }
+      : { param: 'movieId', value: movieData.movieId };
+      // ? movieData.id
+      // : movieData.movieId;
 
-    // mainApi.deleteMovie();
+    console.log('Movie deleted: ', deleteParam);
+
+    deleteMovieHandler(deleteParam);
   }
 
   return (
@@ -58,8 +76,10 @@ const MoviesCard = ({ movieData }) => {
       </a>
 
       <MovieCardButton
-        onClickHandler={pathname === "/movies" ? saveMovieHandler : deleteMovieHandler}
-        typeClass={''}
+        // onClickHandler={pathname === "/movies" ? saveMovieHandler : onDeleteMovie}
+        onClickHandler={isMovieSaved ? onDeleteMovie : saveMovieHandler}
+        // typeClass={''}
+        typeClass={isMovieSaved && pathname === "/movies"}
       >
         {pathname === "/movies" ? 'Сохранить' : 'X'}
       </MovieCardButton>
