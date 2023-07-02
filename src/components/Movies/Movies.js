@@ -75,7 +75,7 @@ const Movies = () => {
   const handleSearchSubmit = (evt) => {
     evt.preventDefault();
     const {querry, shorts} = evt.target.elements;
-    console.log(querry.value, shorts.checked);
+    // console.log(querry.value, shorts.checked);
 
     const currentSearch = {querry: querry.value, includeShorts: shorts.checked};
 
@@ -87,7 +87,7 @@ const Movies = () => {
     if (!searchParams.querry) return;
 
     const currentSearchedMovies = allMovies.filter(movie => movieFilter(movie, searchParams));
-    console.log('currentSearchedMovies: ', currentSearchedMovies);
+    // console.log('currentSearchedMovies: ', currentSearchedMovies);
     setSearchedMovies(currentSearchedMovies);
   }, [searchParams, allMovies])
 

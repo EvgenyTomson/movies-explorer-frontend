@@ -7,16 +7,18 @@ import NotFound from '../NotFound/NotFound';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Layout from '../Layout/Layout';
 import Header from '../Header/Header';
 import { CurrentUserContextProvider } from '../../contexts/CurrentUserContextProvider';
+import { mainApi } from '../../utils/MainApi';
 
 const App = () => {
   const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
 
-  const [currentUser, setCurrentUser] = useState({name: 'Вася', email: 'user@mail.ru'});
+  const [currentUser, setCurrentUser] = useState({name: '', email: ''});
+  // const [currentUser, setCurrentUser] = useState(null);
 
   // Временная логика для имитации авторизации:
   const handleRegestration = () => {
@@ -32,6 +34,29 @@ const App = () => {
     setIsLogged(false);
     navigate("/signin", {replace: true});
   }
+
+  useEffect(() => {
+    const id = localStorage.getItem('currentId');
+    console.log(id);
+
+    if(id) {
+      mainApi.reEnter()
+        .then((userData) => {
+          // onUserLogin(data.email);
+          console.log(userData);
+          setCurrentUser(userData);
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!currentUser.name) return;
+    // if (!currentUser) return;
+    setIsLogged(true);
+  }, [currentUser])
 
   return (
     <div className="body">

@@ -1,1 +1,1 @@
-export const moviesImgsBaseUrl = 'https://api.nomoreparties.co/';
+export const moviesImgsBaseUrl = 'https://api.nomoreparties.co';

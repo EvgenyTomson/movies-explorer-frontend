@@ -29,6 +29,8 @@ const Login = ({ onLogin, setLoginStatus }) => {
 
       setLoginStatus(true);
 
+      localStorage.setItem('currentId', userData._id);
+
       navigate("/movies", {replace: true});
     })
     .catch(err => {

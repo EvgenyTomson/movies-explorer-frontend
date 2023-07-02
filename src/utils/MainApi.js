@@ -54,6 +54,18 @@ class MainApi {
       })
   }
 
+  editUserData(userData) {
+    return fetch(`${this._baseUrl}/users/me`, {
+        method: 'PATCH',
+        credentials: 'include',
+        headers: this._headers,
+        body: JSON.stringify(userData)
+      })
+        .then(res => {
+          return this._checkResponseStatus(res, 'editUserData')
+        })
+  }
+
   logoutUser() {
     return fetch(`${this._baseUrl}/signout`, {
       method: 'GET',
@@ -62,6 +74,30 @@ class MainApi {
       .then(res => {
         return this._checkResponseStatus(res, 'logoutUser')
       })
+  }
+
+  // Фильмы
+  getSavedMovies() {
+    return fetch(`${this._baseUrl}/movies`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: this._headers
+      })
+        .then(res => {
+          return this._checkResponseStatus(res, 'getSavedMovies')
+        })
+  }
+
+  saveMovie(movieData) {
+    return fetch(`${this._baseUrl}/movies`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: this._headers,
+        body: JSON.stringify(movieData)
+      })
+        .then(res => {
+          return this._checkResponseStatus(res, 'saveMovie')
+        })
   }
 }
 

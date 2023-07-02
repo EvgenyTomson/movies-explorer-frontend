@@ -3,12 +3,33 @@ import { convertDuration } from '../../utils/utils';
 import MovieCardButton from './MovieCardButton/MovieCardButton';
 import './MoviesCard.css';
 import { moviesImgsBaseUrl } from '../../constants/constants';
+import { mainApi } from '../../utils/MainApi';
 
 const MoviesCard = ({ movieData }) => {
   const { pathname } = useLocation();
 
   const saveMovieHandler = () => {
-    console.log('Movie saved');
+    const savingMovieData = {
+      ...movieData,
+      movieId: movieData.id,
+      image: `${moviesImgsBaseUrl}${movieData.image.url}`,
+      thumbnail: `${moviesImgsBaseUrl}${movieData.image.formats.thumbnail.url}`,
+    };
+
+    delete savingMovieData.id;
+    delete savingMovieData.created_at;
+    delete savingMovieData.updated_at;
+
+    console.log('Movie data: ', movieData);
+    console.log('Movie saved: ', savingMovieData);
+
+    mainApi.saveMovie(savingMovieData)
+      .then(movie => {
+        console.log('movie: ', movie);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   const deleteMovieHandler = () => {
@@ -25,7 +46,11 @@ const MoviesCard = ({ movieData }) => {
       >
         <img
           className="movie-card__image"
-          src={`${moviesImgsBaseUrl}${movieData.image.url}`}
+          src={
+            pathname === "/movies"
+              ? `${moviesImgsBaseUrl}/${movieData.image.url}`
+              : movieData.image
+          }
           alt={movieData.nameRU}
         />
       </a>
@@ -34,7 +59,7 @@ const MoviesCard = ({ movieData }) => {
         onClickHandler={pathname === "/movies" ? saveMovieHandler : deleteMovieHandler}
         typeClass={''}
       >
-        {pathname === "/movies" ? 'Сохранить' : 'x'}
+        {pathname === "/movies" ? 'Сохранить' : 'X'}
       </MovieCardButton>
       <div className="movie-card__description">
         <h2 className="movie-card__name">
