@@ -45,10 +45,10 @@ const SavedMovies = () => {
   }
 
   useEffect(() => {
-    if (!searchParams.querry) {
-      setSearchedSavedMovies(savedMovies);
-      return;
-    }
+    // if (!searchParams.querry) {
+    //   setSearchedSavedMovies(savedMovies);
+    //   return;
+    // }
 
     const currentSearchedMovies = savedMovies.filter(movie => movieFilter(movie, searchParams));
     console.log('currentSearchedMovies: ', currentSearchedMovies);
@@ -60,6 +60,8 @@ const SavedMovies = () => {
       <SearchForm
         searchParams={searchParams}
         handleSubmit={handleSearchSubmit}
+
+        setSearchParams={setSearchParams}
       />
       {isLoadind
         ? <Preloader />

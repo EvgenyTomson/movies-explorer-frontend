@@ -75,7 +75,11 @@ const Movies = () => {
   const handleSearchSubmit = (evt) => {
     evt.preventDefault();
     const {querry, shorts} = evt.target.elements;
-    // console.log(querry.value, shorts.checked);
+    console.log(querry.value, shorts.checked);
+    if (!querry.value) {
+      console.log('Нужно ввести ключевое слово');
+      return;
+    }
 
     const currentSearch = {querry: querry.value, includeShorts: shorts.checked};
 
@@ -96,6 +100,8 @@ const Movies = () => {
       <SearchForm
         searchParams={searchParams}
         handleSubmit={handleSearchSubmit}
+
+        setSearchParams={setSearchParams}
       />
       {isLoadind
         ? <Preloader />

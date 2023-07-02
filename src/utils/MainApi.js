@@ -99,6 +99,17 @@ class MainApi {
           return this._checkResponseStatus(res, 'saveMovie')
         })
   }
+
+  deleteMovie(movieId) {
+    return fetch(`${this._baseUrl}/movies/${movieId}`, {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: this._headers
+      })
+        .then(res => {
+          return this._checkResponseStatus(res, 'deleteCard')
+        })
+  }
 }
 
 export const mainApi = new MainApi(mainApiOptions);

@@ -34,6 +34,8 @@ const MoviesCard = ({ movieData }) => {
 
   const deleteMovieHandler = () => {
     console.log('Movie deleted');
+
+    // mainApi.deleteMovie();
   }
 
   return (

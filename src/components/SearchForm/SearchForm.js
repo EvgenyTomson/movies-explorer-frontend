@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css'
 
-const SearchForm = ({ searchParams, handleSubmit }) => {
+const SearchForm = ({ searchParams, handleSubmit, setSearchParams }) => {
   const [searchValue, setSearchValue] = useState(searchParams.querry);//useState('');
   const [isShortsChecked, setIsShortsChecked] = useState(searchParams.includeShorts);//useState(false);
 
@@ -12,6 +12,7 @@ const SearchForm = ({ searchParams, handleSubmit }) => {
 
   const handleShortsCheck = () => {
     setIsShortsChecked(!isShortsChecked);
+    setSearchParams({...searchParams, includeShorts: !searchParams.includeShorts});
   }
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const SearchForm = ({ searchParams, handleSubmit }) => {
             className="search__input"
             type="text"
             name="querry"
-            required
+            // required
             placeholder="Фильм"
             onChange={handleChange}
             value={searchValue}
