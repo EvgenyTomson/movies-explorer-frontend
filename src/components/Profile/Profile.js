@@ -10,7 +10,7 @@ const Profile = ({ onLogout, setLoginStatus }) => {
 
   const [isSameValues, setIsSameValues] = useState(true);
 
-  const [apiErrorMessage, setApiErrorMessage] = useState('');
+  const [apiMessage, setApiMessage] = useState('');
 
   const {
     values,
@@ -30,7 +30,7 @@ const Profile = ({ onLogout, setLoginStatus }) => {
   const handleMakeEditable = () => {
     setIsEditing(true);
 
-    setApiErrorMessage('');
+    setApiMessage('');
   }
 
   const handleSubmit = (e) => {
@@ -41,9 +41,10 @@ const Profile = ({ onLogout, setLoginStatus }) => {
     mainApi.editUserData(values)
       .then(updatedUserData => {
         setCurrentUser(updatedUserData);
+        setApiMessage('Данные профиля успешно обновлены');
       })
       .catch(error => {
-        setApiErrorMessage(error);
+        setApiMessage(error);
         // console.log(error);
       })
       .finally(() => {
@@ -136,7 +137,7 @@ const Profile = ({ onLogout, setLoginStatus }) => {
         </label>
 
         <span className="profile__api-error">
-          {apiErrorMessage}
+          {apiMessage}
         </span>
 
         {

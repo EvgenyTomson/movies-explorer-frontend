@@ -13,6 +13,7 @@ import Header from '../Header/Header';
 import { CurrentUserContextProvider } from '../../contexts/CurrentUserContextProvider';
 import { mainApi } from '../../utils/MainApi';
 import { SavedMoviesContextProvider } from '../../contexts/SavedMoviesContextProvider';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 const App = () => {
   const [isLogged, setIsLogged] = useState(false);
@@ -41,14 +42,19 @@ const App = () => {
 
   useEffect(() => {
     const id = localStorage.getItem('currentId');
-    console.log(id);
 
-    if(id) {
+    // console.log(id);
+
+    if (id) {
       mainApi.reEnter()
         .then((userData) => {
           // onUserLogin(data.email);
-          console.log(userData);
+          // console.log(userData);
           setCurrentUser(userData);
+
+          setIsLogged(true);
+
+          // navigate(-1);
         })
         .catch((error) => {
           console.error(error);
@@ -56,11 +62,12 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (!currentUser.name) return;
-    // if (!currentUser) return;
-    setIsLogged(true);
-  }, [currentUser])
+  // Не нужен
+  // useEffect(() => {
+  //   if (!currentUser.name) return;
+  //   // if (!currentUser) return;
+  //   setIsLogged(true);
+  // }, [currentUser])
 
   return (
     <div className="body">
@@ -80,15 +87,23 @@ const App = () => {
             </Layout>
           }
         />
-        <Route path="/signup" element={<Register onRegister={handleRegestration} setLoginStatus={setIsLogged} />} />
-        <Route path="/signin" element={<Login onLogin={handleLogin} setLoginStatus={setIsLogged} />} />
+        <Route
+          path="/signup"
+          element={<Register onRegister={handleRegestration} setLoginStatus={setIsLogged} />}
+        />
+        <Route
+          path="/signin"
+          element={<Login onLogin={handleLogin} setLoginStatus={setIsLogged} />}
+        />
 
         <Route
           path="/movies"
           element={
-            <Layout isLogged={isLogged}>
-              <Movies />
-            </Layout>
+            <ProtectedRoute isLogged={isLogged}>
+              <Layout isLogged={isLogged}>
+                <Movies />
+              </Layout>
+            </ProtectedRoute>
           }
         />
         <Route
