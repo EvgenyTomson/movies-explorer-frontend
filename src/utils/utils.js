@@ -1,5 +1,4 @@
 import {
-  emailTester,
   MOBILE_SCREEN_WIDTH,
   TABLET_SCREEN_WIDTH,
   DESKTOP_CARDS_AMOUNT,
