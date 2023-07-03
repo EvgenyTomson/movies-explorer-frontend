@@ -41,6 +41,8 @@ const Register = ({ onRegister, setLoginStatus }) => {
         setCurrentUser(userData);
         setLoginStatus(true);
 
+        localStorage.setItem('currentId', userData._id);
+
         navigate("/movies", {replace: true});
       })
 
