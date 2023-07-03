@@ -17,7 +17,6 @@ const SavedMovies = () => {
     setIsLoading(true);
     mainApi.getSavedMovies()
       .then(res => {
-        console.log(res);
         setSavedMovies(res);
       })
       .catch(err => {

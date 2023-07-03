@@ -14,7 +14,7 @@ class MainApi {
   }
 
   // Проверяем статус ответа сервера:
-  _checkResponseStatus(response, method) {
+  _checkResponseStatus(response) {
     return response.ok ? response.json() : response.json().then(err => Promise.reject(err.message));
   }
 
@@ -25,7 +25,7 @@ class MainApi {
       body: JSON.stringify(userData)
     })
       .then(res => {
-        return this._checkResponseStatus(res, 'signup')
+        return this._checkResponseStatus(res)
       })
   }
 
@@ -39,7 +39,7 @@ class MainApi {
       body: JSON.stringify(userData)
     })
       .then(res => {
-        return this._checkResponseStatus(res, 'signin')
+        return this._checkResponseStatus(res)
       })
   }
 
@@ -50,7 +50,7 @@ class MainApi {
       headers: this._headers
     })
       .then(res => {
-        return this._checkResponseStatus(res, 'reEnter')
+        return this._checkResponseStatus(res)
       })
   }
 
@@ -62,7 +62,7 @@ class MainApi {
         body: JSON.stringify(userData)
       })
         .then(res => {
-          return this._checkResponseStatus(res, 'editUserData')
+          return this._checkResponseStatus(res)
         })
   }
 
@@ -72,7 +72,7 @@ class MainApi {
       credentials: 'include',
     })
       .then(res => {
-        return this._checkResponseStatus(res, 'logoutUser')
+        return this._checkResponseStatus(res)
       })
   }
 
@@ -84,7 +84,7 @@ class MainApi {
         headers: this._headers
       })
         .then(res => {
-          return this._checkResponseStatus(res, 'getSavedMovies')
+          return this._checkResponseStatus(res)
         })
   }
 
@@ -96,7 +96,7 @@ class MainApi {
         body: JSON.stringify(movieData)
       })
         .then(res => {
-          return this._checkResponseStatus(res, 'saveMovie')
+          return this._checkResponseStatus(res)
         })
   }
 
@@ -107,7 +107,7 @@ class MainApi {
         headers: this._headers
       })
         .then(res => {
-          return this._checkResponseStatus(res, 'deleteCard')
+          return this._checkResponseStatus(res)
         })
   }
 }
