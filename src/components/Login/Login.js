@@ -4,6 +4,7 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { Link, useNavigate } from 'react-router-dom';
 import { mainApi } from '../../utils/MainApi';
 import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider';
+import { useState } from 'react';
 
 const Login = ({ onLogin, setLoginStatus }) => {
   const { setCurrentUser} = useCurrentUserContext();
@@ -12,6 +13,7 @@ const Login = ({ onLogin, setLoginStatus }) => {
 
   const navigate = useNavigate();
 
+  const [apiErrorMessage, setApiErrorMessage] = useState('');
 
   const defaultRegisterInputClassName = 'auth__input';
   const errorRegisterInputClassName = 'auth__input auth__input_type_error';
@@ -19,7 +21,8 @@ const Login = ({ onLogin, setLoginStatus }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    console.log('signin values: ', values);
+    // console.log('signin values: ', values);
+    setApiErrorMessage('');
 
     mainApi.signin(values)
     .then((userData) => {
@@ -34,7 +37,8 @@ const Login = ({ onLogin, setLoginStatus }) => {
       navigate("/movies", {replace: true});
     })
     .catch(err => {
-      console.log(err);
+      setApiErrorMessage(err);
+      // console.log(err);
     })
 
     // onLogin();
@@ -88,6 +92,11 @@ const Login = ({ onLogin, setLoginStatus }) => {
           />
           <span className="auth__error" >{errors.password}</span>
         </label>
+
+        <span className="auth__api-error">
+          {apiErrorMessage}
+        </span>
+
         <button
           className={isValid ? "auth__submit": "auth__submit auth__submit_disabled"}
           type="submit"

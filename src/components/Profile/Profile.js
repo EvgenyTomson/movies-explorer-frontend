@@ -8,6 +8,10 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 const Profile = ({ onLogout, setLoginStatus }) => {
   const {currentUser, setCurrentUser} = useCurrentUserContext();
 
+  const [isSameValues, setIsSameValues] = useState(true);
+
+  const [apiErrorMessage, setApiErrorMessage] = useState('');
+
   const {
     values,
     handleChange,
@@ -25,20 +29,25 @@ const Profile = ({ onLogout, setLoginStatus }) => {
 
   const handleMakeEditable = () => {
     setIsEditing(true);
+
+    setApiErrorMessage('');
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Profile edit form submitted');
+
+    // console.log('Profile edit form submitted');
 
     mainApi.editUserData(values)
       .then(updatedUserData => {
         setCurrentUser(updatedUserData);
       })
       .catch(error => {
-        console.error(error);
+        setApiErrorMessage(error);
+        // console.log(error);
       })
       .finally(() => {
+        setIsSameValues(true);
         // setIsProfileLoading(false);
         // resetForm(false, { name: currentUser.name, email: currentUser.email });
       })
@@ -65,6 +74,14 @@ const Profile = ({ onLogout, setLoginStatus }) => {
       navigate("/", {replace: true});
     })
   }
+
+  useEffect(() => {
+    if (currentUser.name === values.name && currentUser.email === values.email) {
+      setIsSameValues(true);
+    } else {
+      setIsSameValues(false);
+    }
+  }, [currentUser, values])
 
   return (
     <main className="profile container">
@@ -117,12 +134,17 @@ const Profile = ({ onLogout, setLoginStatus }) => {
           </div>
           <span className="profile__error" >{errors.email}</span>
         </label>
+
+        <span className="profile__api-error">
+          {apiErrorMessage}
+        </span>
+
         {
           isEditing
             ? <button
                 type="submit"
-                className={isValid ? "profile__submit" : "profile__submit profile__submit_disabled"}
-                disabled={!isValid}
+                className="profile__submit"
+                disabled={isSameValues || !isValid}
               >
                 Сохранить
               </button>

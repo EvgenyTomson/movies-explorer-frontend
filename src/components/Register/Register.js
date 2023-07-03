@@ -4,6 +4,7 @@ import './Register.css';
 import Logo from '../Logo/Logo';
 import { mainApi } from '../../utils/MainApi';
 import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider';
+import { useState } from 'react';
 // import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider';
 
 const Register = ({ onRegister, setLoginStatus }) => {
@@ -14,6 +15,8 @@ const Register = ({ onRegister, setLoginStatus }) => {
   const { setCurrentUser } = useCurrentUserContext();
   // console.log(currentUser, setCurrentUser);
 
+  const [apiErrorMessage, setApiErrorMessage] = useState('');
+
   const defaultRegisterInputClassName = 'register__input';
   const errorRegisterInputClassName = 'register__input register__input_type_error';
 
@@ -21,7 +24,8 @@ const Register = ({ onRegister, setLoginStatus }) => {
     evt.preventDefault();
     // onRegister();
 
-    console.log('signup values: ', values);
+    // console.log('signup values: ', values);
+    setApiErrorMessage('');
 
     mainApi.signup(values)
     .then((userData) => {
@@ -32,7 +36,7 @@ const Register = ({ onRegister, setLoginStatus }) => {
       return mainApi.signin({ email, password })
     })
       .then((userData) => {
-        console.log('signin userData: ', userData);
+        // console.log('signin userData: ', userData);
 
         setCurrentUser(userData);
         setLoginStatus(true);
@@ -41,7 +45,8 @@ const Register = ({ onRegister, setLoginStatus }) => {
       })
 
     .catch(err => {
-      console.log(err);
+      setApiErrorMessage(err);
+      // console.log(err);
     })
 
     resetForm();
@@ -115,6 +120,11 @@ const Register = ({ onRegister, setLoginStatus }) => {
           />
           <span className="register__error" >{errors.password}</span>
         </label>
+
+        <span className="register__api-error">
+          {apiErrorMessage}
+        </span>
+
         <button
           className={isValid ? "register__submit": "register__submit register__submit_disabled"}
           type="submit"

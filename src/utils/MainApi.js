@@ -15,7 +15,11 @@ class MainApi {
 
   // Проверяем статус ответа сервера:
   _checkResponseStatus(response, method) {
-    return response.ok ? response.json() : Promise.reject(`Ошибка в ${method}: ${response.status}`)
+
+    // return response.ok ? response.json() : Promise.reject(`Ошибка в ${method}: ${response.status}`)
+    // return response.ok ? response.json() : Promise.reject(`Ошибка в ${method}: ${response.json()}`)
+
+    return response.ok ? response.json() : response.json().then(err => Promise.reject(err.message));
   }
 
   signup(userData) {
