@@ -1,10 +1,10 @@
 import {
   emailTester,
-  mobileScreenWidth,
-  desktopScreenWidth,
-  desktopCardsAmount,
-  tabletCardsAmount,
-  mobileCardsAmount,
+  MOBILE_SCREEN_WIDTH,
+  TABLET_SCREEN_WIDTH,
+  DESKTOP_CARDS_AMOUNT,
+  TABLET_CARDS_AMOUNT,
+  MOBILE_CARDS_AMOUNT,
  } from '../constants/constants';
 
 export const convertDuration = (duration) => {
@@ -21,13 +21,13 @@ export const convertDuration = (duration) => {
 export const getCardsAmount = () => {
   const screenWidth = window.innerWidth;
 
-  if (screenWidth <= mobileScreenWidth) {
-    return mobileCardsAmount;
-  } else if (screenWidth <= desktopScreenWidth) {
-    return tabletCardsAmount;
+  if (screenWidth <= MOBILE_SCREEN_WIDTH) {
+    return MOBILE_CARDS_AMOUNT;
+  } else if (screenWidth <= TABLET_SCREEN_WIDTH) {
+    return TABLET_CARDS_AMOUNT;
   }
 
-  return desktopCardsAmount;
+  return DESKTOP_CARDS_AMOUNT;
 }
 
 // Фильтрация фильмов
@@ -47,18 +47,4 @@ const filterMovieByQuerry = (movie, searchQuerry) => {
 
 export const movieFilter = (movie, { querry, includeShorts }) => {
   return checkMovieDuration(movie.duration, includeShorts) && filterMovieByQuerry(movie, querry);
-}
-
-// Валидация электронной почты
-export const emailValidator = (email) => {
-	if (!email)	return false;
-	if (email.length>254) return false;
-	if (!emailTester.test(email)) return false;
-	const parts = email.split("@");
-  if (parts.length > 2) return false;
-	if (parts[0].length>64)return false;
-	const domainParts = parts[1].split(".");
-	if (domainParts.some((part) => part.length>63))	return false;
-
-	return true;
 }

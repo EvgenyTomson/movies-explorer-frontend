@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { convertDuration } from '../../utils/utils';
 import MovieCardButton from './MovieCardButton/MovieCardButton';
 import './MoviesCard.css';
-import { moviesImgsBaseUrl } from '../../constants/constants';
+import { MOVIES_IMAGES_BASE_URL } from '../../constants/constants';
 import { mainApi } from '../../utils/MainApi';
 import { useSavedMoviesContext } from '../../contexts/SavedMoviesContextProvider';
 import { useEffect, useState } from 'react';
@@ -20,8 +20,8 @@ const MoviesCard = ({ movieData, deleteMovieHandler }) => {
     const savingMovieData = {
       ...movieData,
       movieId: movieData.id,
-      image: `${moviesImgsBaseUrl}${movieData.image.url}`,
-      thumbnail: `${moviesImgsBaseUrl}${movieData.image.formats.thumbnail.url}`,
+      image: `${MOVIES_IMAGES_BASE_URL}${movieData.image.url}`,
+      thumbnail: `${MOVIES_IMAGES_BASE_URL}${movieData.image.formats.thumbnail.url}`,
     };
     delete savingMovieData.id;
     delete savingMovieData.created_at;
@@ -56,7 +56,7 @@ const MoviesCard = ({ movieData, deleteMovieHandler }) => {
           className="movie-card__image"
           src={
             pathname === "/movies"
-              ? `${moviesImgsBaseUrl}/${movieData.image.url}`
+              ? `${MOVIES_IMAGES_BASE_URL}/${movieData.image.url}`
               : movieData.image
           }
           alt={movieData.nameRU}
