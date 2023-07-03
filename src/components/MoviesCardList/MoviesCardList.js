@@ -5,22 +5,15 @@ import { mainApi } from '../../utils/MainApi';
 import { useSavedMoviesContext } from '../../contexts/SavedMoviesContextProvider';
 
 const MoviesCardList = ({ moviesData }) => {
-
   const { savedMovies, setSavedMovies } = useSavedMoviesContext();
-
   const { pathname } = useLocation();
 
-  const deleteMovieHandler = ({ param, value }) => {
-
+  const deleteMovieHandler = ( value ) => {
     const movieToDelete = savedMovies.find(movie => movie.movieId === value);
-
-    // console.log('deleteMovieHandler movie: ', movieToDelete);
 
     mainApi.deleteMovie(movieToDelete._id)
       .then(deletedMovieData => {
-        console.log('deletedMovieData: ', deletedMovieData);
-        // setMoviesData(moviesData.filter(movie => movie[param] !== value));
-        setSavedMovies(savedMovies.filter(movie => movie.movieId !== value));
+        setSavedMovies(savedMovies.filter(movie => movie._id !== deletedMovieData._id));
       })
       .catch(err => {
         console.error(err);

@@ -5,38 +5,28 @@ import { useNavigate } from 'react-router-dom';
 import { mainApi } from '../../utils/MainApi';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 
-const Profile = ({ onLogout, setLoginStatus }) => {
+const Profile = ({ setLoginStatus }) => {
   const {currentUser, setCurrentUser} = useCurrentUserContext();
-
   const [isSameValues, setIsSameValues] = useState(true);
-
   const [apiMessage, setApiMessage] = useState('');
-
   const {
     values,
     handleChange,
     errors,
     isValid,
     resetForm,
-    // inputVilidities
   } = useFormWithValidation();
-
   const navigate = useNavigate();
-
   const nameInputRef = useRef(null);
-
   const [isEditing, setIsEditing] = useState(false);
 
   const handleMakeEditable = () => {
     setIsEditing(true);
-
     setApiMessage('');
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // console.log('Profile edit form submitted');
 
     mainApi.editUserData(values)
       .then(updatedUserData => {
@@ -45,12 +35,9 @@ const Profile = ({ onLogout, setLoginStatus }) => {
       })
       .catch(error => {
         setApiMessage(error);
-        // console.log(error);
       })
       .finally(() => {
         setIsSameValues(true);
-        // setIsProfileLoading(false);
-        // resetForm(false, { name: currentUser.name, email: currentUser.email });
       })
 
     setIsEditing(false);

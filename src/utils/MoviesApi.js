@@ -18,7 +18,6 @@ class MoviesApi {
 
   // загрузка карточек с сервера:
   getAllMovies() {
-
     return fetch(this._baseUrl, {
         method: 'GET',
         headers: this._headers,

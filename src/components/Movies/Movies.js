@@ -16,10 +16,8 @@ const Movies = () => {
   const [displayedMovies, setDisplayedMovies] = useState([]);
   const [cardsAmount, setCardsAmount] = useState(getCardsAmount());
   const [isMoveButtonVisible, setIsMoveButtonVisible] = useState(true);
-
   const [searchParams, setSearchParams] = useState({querry: '', includeShorts: false});
   const [serachedMovies, setSearchedMovies] = useState([]);
-
 
   const { setSavedMovies } = useSavedMoviesContext();
 
@@ -39,7 +37,6 @@ const Movies = () => {
   }, [setSavedMovies])
 
   const handleResize = () => {
-    // console.log('resize', cardsAmount);
     setCardsAmount(getCardsAmount());
   }
 
@@ -57,10 +54,8 @@ const Movies = () => {
     if (search) setSearchParams(search);
 
     const storageMovies = JSON.parse(localStorage.getItem('movies'));
-    // console.log(storageMovies);
     if (storageMovies) {
       setAllMovies(storageMovies);
-      //(storageMovies.slice(0, 40)); // не забыть убрать слайс, он нужен для тестов!!!
       return;
     }
 
@@ -111,7 +106,6 @@ const Movies = () => {
     if (!searchParams.querry) return;
 
     const currentSearchedMovies = allMovies.filter(movie => movieFilter(movie, searchParams));
-    // console.log('currentSearchedMovies: ', currentSearchedMovies);
     setSearchedMovies(currentSearchedMovies);
   }, [searchParams, allMovies])
 
@@ -123,11 +117,11 @@ const Movies = () => {
 
         setSearchParams={setSearchParams}
       />
+
       {isLoadind
         ? <Preloader />
         : <MoviesCardList moviesData={displayedMovies} />
       }
-      {/* <MoviesCardList moviesData={moviesData}/> */}
 
       {
         isMoveButtonVisible

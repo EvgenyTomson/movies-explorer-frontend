@@ -9,9 +9,7 @@ import { useEffect, useState } from 'react';
 
 const MoviesCard = ({ movieData, deleteMovieHandler }) => {
   const { savedMovies, setSavedMovies } = useSavedMoviesContext();
-
   const { pathname } = useLocation();
-
   const [isMovieSaved, setIsMovieSaved] = useState(false);
 
   useEffect(() => {
@@ -25,18 +23,12 @@ const MoviesCard = ({ movieData, deleteMovieHandler }) => {
       image: `${moviesImgsBaseUrl}${movieData.image.url}`,
       thumbnail: `${moviesImgsBaseUrl}${movieData.image.formats.thumbnail.url}`,
     };
-
     delete savingMovieData.id;
     delete savingMovieData.created_at;
     delete savingMovieData.updated_at;
 
-    // console.log('Movie data: ', movieData);
-    // console.log('Movie saved: ', savingMovieData);
-
     mainApi.saveMovie(savingMovieData)
       .then(movie => {
-        console.log('movie: ', movie, 'savedMovies: ', savedMovies);
-
         setSavedMovies([...savedMovies, movie]);
       })
       .catch(err => {
@@ -46,12 +38,8 @@ const MoviesCard = ({ movieData, deleteMovieHandler }) => {
 
   const onDeleteMovie = () => {
     const deleteParam = pathname === '/movies'
-      ? { param: 'id', value: movieData.id }
-      : { param: 'movieId', value: movieData.movieId };
-      // ? movieData.id
-      // : movieData.movieId;
-
-    console.log('Movie deleted: ', deleteParam);
+      ? movieData.id
+      : movieData.movieId;
 
     deleteMovieHandler(deleteParam);
   }
@@ -76,9 +64,7 @@ const MoviesCard = ({ movieData, deleteMovieHandler }) => {
       </a>
 
       <MovieCardButton
-        // onClickHandler={pathname === "/movies" ? saveMovieHandler : onDeleteMovie}
         onClickHandler={isMovieSaved ? onDeleteMovie : saveMovieHandler}
-        // typeClass={''}
         typeClass={isMovieSaved && pathname === "/movies"}
       >
         {pathname === "/movies" ? 'Сохранить' : 'X'}

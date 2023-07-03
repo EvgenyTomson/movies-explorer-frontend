@@ -5,43 +5,36 @@ import { Link, useNavigate } from 'react-router-dom';
 import { mainApi } from '../../utils/MainApi';
 import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider';
 import { useState } from 'react';
+import Preloader from '../Preloader/Preloader';
 
-const Login = ({ onLogin, setLoginStatus }) => {
+const Login = ({ setLoginStatus }) => {
   const { setCurrentUser} = useCurrentUserContext();
-
   const { values, handleChange, errors, isValid, resetForm, inputVilidities } = useFormWithValidation();
-
   const navigate = useNavigate();
-
   const [apiErrorMessage, setApiErrorMessage] = useState('');
-
+  const [isLoadind, setIsLoading] =  useState(false);
   const defaultRegisterInputClassName = 'auth__input';
   const errorRegisterInputClassName = 'auth__input auth__input_type_error';
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
-    // console.log('signin values: ', values);
     setApiErrorMessage('');
 
+    setIsLoading(true);
     mainApi.signin(values)
     .then((userData) => {
-      console.log('signin userData: ', userData);
-
       setCurrentUser(userData);
-
       setLoginStatus(true);
-
       localStorage.setItem('currentId', userData._id);
-
       navigate("/movies", {replace: true});
     })
     .catch(err => {
       setApiErrorMessage(err);
-      // console.log(err);
+    })
+    .finally(() => {
+      setIsLoading(false);
     })
 
-    // onLogin();
     resetForm();
   }
 
@@ -97,13 +90,17 @@ const Login = ({ onLogin, setLoginStatus }) => {
           {apiErrorMessage}
         </span>
 
-        <button
-          className={isValid ? "auth__submit": "auth__submit auth__submit_disabled"}
-          type="submit"
-          disabled={!isValid}
-        >
-          Войти
-        </button>
+        {
+          isLoadind
+            ? <Preloader />
+            : <button
+                className={isValid ? "register__submit": "register__submit register__submit_disabled"}
+                type="submit"
+                disabled={!isValid}
+              >
+                Зарегистрироваться
+              </button>
+        }
         <p className="auth__text">
           Ещё не зарегистрированы? <Link to="/signup" className="auth__link">Регистрация</Link>
         </p>

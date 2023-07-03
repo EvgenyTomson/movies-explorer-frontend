@@ -5,50 +5,39 @@ import Logo from '../Logo/Logo';
 import { mainApi } from '../../utils/MainApi';
 import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider';
 import { useState } from 'react';
-// import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider';
+import Preloader from '../Preloader/Preloader';
 
-const Register = ({ onRegister, setLoginStatus }) => {
+const Register = ({ setLoginStatus }) => {
   const { values, handleChange, errors, isValid, resetForm, inputVilidities } = useFormWithValidation();
-
   const navigate = useNavigate();
-
   const { setCurrentUser } = useCurrentUserContext();
-  // console.log(currentUser, setCurrentUser);
-
   const [apiErrorMessage, setApiErrorMessage] = useState('');
-
+  const [isLoadind, setIsLoading] =  useState(false);
   const defaultRegisterInputClassName = 'register__input';
   const errorRegisterInputClassName = 'register__input register__input_type_error';
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    // onRegister();
-
-    // console.log('signup values: ', values);
     setApiErrorMessage('');
 
+    setIsLoading(true);
     mainApi.signup(values)
-    .then((userData) => {
-      console.log('signup userData: ', userData);
-
+    .then(() => {
       // если регистрация успешна - сразу авторизуемся и переходим на Фильмы
       const { email, password } = values;
       return mainApi.signin({ email, password })
     })
-      .then((userData) => {
-        // console.log('signin userData: ', userData);
-
-        setCurrentUser(userData);
-        setLoginStatus(true);
-
-        localStorage.setItem('currentId', userData._id);
-
-        navigate("/movies", {replace: true});
-      })
-
+    .then((userData) => {
+      setCurrentUser(userData);
+      setLoginStatus(true);
+      localStorage.setItem('currentId', userData._id);
+      navigate("/movies", {replace: true});
+    })
     .catch(err => {
       setApiErrorMessage(err);
-      // console.log(err);
+    })
+    .finally(() => {
+      setIsLoading(false);
     })
 
     resetForm();
@@ -127,13 +116,17 @@ const Register = ({ onRegister, setLoginStatus }) => {
           {apiErrorMessage}
         </span>
 
-        <button
-          className={isValid ? "register__submit": "register__submit register__submit_disabled"}
-          type="submit"
-          disabled={!isValid}
-        >
-          Зарегистрироваться
-        </button>
+        {
+          isLoadind
+            ? <Preloader />
+            : <button
+                className={isValid ? "register__submit": "register__submit register__submit_disabled"}
+                type="submit"
+                disabled={!isValid}
+              >
+                Зарегистрироваться
+              </button>
+        }
         <p className="register__text">
           Уже зарегистрированы? <Link to="/signin" className="register__link">Войти</Link>
         </p>
