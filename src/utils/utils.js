@@ -1,3 +1,12 @@
+import {
+  emailTester,
+  mobileScreenWidth,
+  desktopScreenWidth,
+  desktopCardsAmount,
+  tabletCardsAmount,
+  mobileCardsAmount,
+ } from '../constants/constants';
+
 export const convertDuration = (duration) => {
   const hours = Math.trunc(duration / 60);
   const munutes = duration % 60;
@@ -9,25 +18,16 @@ export const convertDuration = (duration) => {
   return resultTime.join(' ');
 }
 
-export const apiRequestEmulation = (isFail = false) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (isFail) reject(new Error('ошибка api.'));
-      resolve("успех");
-    }, 500)
-  })
-}
-
 export const getCardsAmount = () => {
   const screenWidth = window.innerWidth;
 
-  if (screenWidth <= 600) {
-    return {totalCards: 5, extraCards: 2};
-  } else if (screenWidth <= 900) {
-    return {totalCards: 8, extraCards: 2};
+  if (screenWidth <= mobileScreenWidth) {
+    return mobileCardsAmount;
+  } else if (screenWidth <= desktopScreenWidth) {
+    return tabletCardsAmount;
   }
 
-  return {totalCards: 12, extraCards: 3};
+  return desktopCardsAmount;
 }
 
 // Фильтрация фильмов
@@ -50,18 +50,13 @@ export const movieFilter = (movie, { querry, includeShorts }) => {
 }
 
 // Валидация электронной почты
-export const emailVAlidator = (email) => {
-  const tester = /^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
-
+export const emailValidator = (email) => {
 	if (!email)	return false;
 	if (email.length>254) return false;
-	if (!tester.test(email)) return false;
-
+	if (!emailTester.test(email)) return false;
 	const parts = email.split("@");
-
   if (parts.length > 2) return false;
 	if (parts[0].length>64)return false;
-
 	const domainParts = parts[1].split(".");
 	if (domainParts.some((part) => part.length>63))	return false;
 
