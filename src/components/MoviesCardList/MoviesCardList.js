@@ -22,21 +22,29 @@ const MoviesCardList = ({ moviesData }) => {
 
   return (
     <section className="movies-section">
-      <ul className="movies-list">
-        {
-          moviesData.map((movie) => (
-            <MoviesCard
-              deleteMovieHandler={deleteMovieHandler}
-              key={
-                pathname === "/movies"
-                  ? movie.id
-                  : movie._id
+      {
+        moviesData.length > 0
+          ? <ul className="movies-list">
+              {
+                moviesData.map((movie) => (
+                  <MoviesCard
+                    deleteMovieHandler={deleteMovieHandler}
+                    key={
+                      pathname === "/movies"
+                        ? movie.id
+                        : movie._id
+                    }
+                    movieData={movie}
+                  />
+                ))
               }
-              movieData={movie}
-            />
-          ))
-        }
-      </ul>
+            </ul>
+          : <span
+              className="movies-section__empty"
+            >
+              Ничего не найдено
+            </span>
+      }
     </section>
   )
 };

@@ -47,7 +47,13 @@ const Register = ({ setLoginStatus }) => {
     <main className="register container">
       <Logo />
       <h1 className="register__title">Добро пожаловать!</h1>
-      <form action="#" className="register__form" name="register" noValidate onSubmit={handleSubmit} >
+      <form
+        action="#"
+        className="register__form"
+        name="register"
+        noValidate
+        onSubmit={handleSubmit}
+      >
         <label htmlFor="name" className="register__field">
           Имя
           <input

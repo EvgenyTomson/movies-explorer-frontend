@@ -58,6 +58,7 @@ const Profile = ({ setLoginStatus }) => {
     .then(() => {
       setCurrentUser({name: '', email: ''});
       localStorage.removeItem('currentId');
+      localStorage.removeItem('search');
       setLoginStatus(false);
       navigate("/", {replace: true});
     })
@@ -80,7 +81,9 @@ const Profile = ({ setLoginStatus }) => {
       <form
         name="profile__form"
         className="profile__form"
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+        noValidate
+      >
         <label className="profile__input-container">
           <div className="profile__input-wrapper">
             <span className="profile__input-label">

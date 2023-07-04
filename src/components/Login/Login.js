@@ -42,7 +42,13 @@ const Login = ({ setLoginStatus }) => {
     <main className="auth container">
       <Logo />
       <h1 className="auth__title">Рады видеть!</h1>
-      <form action="#" className="auth__form" name="login" noValidate onSubmit={handleSubmit} >
+      <form
+        action="#"
+        className="auth__form"
+        name="login"
+        noValidate
+        onSubmit={handleSubmit}
+      >
         <label htmlFor="email" className="auth__field">
           E-mail
           <input
