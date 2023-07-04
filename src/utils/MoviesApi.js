@@ -12,8 +12,8 @@ class MoviesApi {
   }
 
   // Проверяем статус ответа сервера:
-  _checkResponseStatus(response, method) {
-    return response.ok ? response.json() : Promise.reject(`Ошибка в ${method}: ${response.status}`)
+  _checkResponseStatus(response, message) {
+    return response.ok ? response.json() : Promise.reject(`${response.status}: ${message}`)
   }
 
   // загрузка карточек с сервера:
@@ -23,7 +23,7 @@ class MoviesApi {
         headers: this._headers,
       })
         .then(res => {
-          return this._checkResponseStatus(res, 'getAllMovies')
+          return this._checkResponseStatus(res, 'Не удалось получить данные фильмов')
         })
   }
 }

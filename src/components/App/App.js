@@ -15,12 +15,20 @@ import { mainApi } from '../../utils/MainApi';
 import { SavedMoviesContextProvider } from '../../contexts/SavedMoviesContextProvider';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Preloader from '../Preloader/Preloader';
+import Modal from '../Modal/Modal';
 
 const App = () => {
   const [isLogged, setIsLogged] = useState(false);
   const [currentUser, setCurrentUser] = useState({name: '', email: ''});
   const [savedMovies, setSavedMovies] = useState([]);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [modalText, setModalText] = useState('');
+
+  const handleModalClose = () => {
+    setIsModalOpened(false);
+    setModalText('');
+  }
 
   useEffect(() => {
     const id = localStorage.getItem('currentId');
@@ -32,7 +40,8 @@ const App = () => {
           setIsLogged(true);
         })
         .catch((error) => {
-          console.error(error);
+          setIsModalOpened(true);
+          setModalText(error);
         })
         .finally(() => {
           setIsTokenChecked(true);
@@ -54,6 +63,11 @@ const App = () => {
               <SavedMoviesContextProvider
                 context={{ savedMovies, setSavedMovies }}
               >
+
+                {
+                  isModalOpened && <Modal onClose={handleModalClose} modalText={modalText} />
+                }
+
                 <Routes>
                   <Route
                     path="/"
@@ -118,7 +132,10 @@ const App = () => {
               </SavedMoviesContextProvider>
             </CurrentUserContextProvider>
 
-          : <Preloader />
+          : <div className="preloader-wrapper">
+              <Preloader />
+            </div>
+
       }
     </div>
   );

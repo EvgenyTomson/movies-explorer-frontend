@@ -6,11 +6,19 @@ import { MOVIES_IMAGES_BASE_URL } from '../../constants/constants';
 import { mainApi } from '../../utils/MainApi';
 import { useSavedMoviesContext } from '../../contexts/SavedMoviesContextProvider';
 import { useEffect, useState } from 'react';
+import Modal from '../Modal/Modal';
 
-const MoviesCard = ({ movieData, deleteMovieHandler }) => {
+const MoviesCard = ({ movieData }) => {
   const { savedMovies, setSavedMovies } = useSavedMoviesContext();
   const { pathname } = useLocation();
   const [isMovieSaved, setIsMovieSaved] = useState(false);
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [modalText, setModalText] = useState('');
+
+  const handleModalClose = () => {
+    setIsModalOpened(false);
+    setModalText('');
+  }
 
   useEffect(() => {
     setIsMovieSaved(savedMovies.some(movie => movie.movieId === movieData.id || movie.movieId === movieData.movieId));
@@ -32,7 +40,8 @@ const MoviesCard = ({ movieData, deleteMovieHandler }) => {
         setSavedMovies([...savedMovies, movie]);
       })
       .catch(err => {
-        console.log(err);
+        setIsModalOpened(true);
+        setModalText(err);
       })
   }
 
@@ -40,12 +49,25 @@ const MoviesCard = ({ movieData, deleteMovieHandler }) => {
     const deleteParam = pathname === '/movies'
       ? movieData.id
       : movieData.movieId;
+    const movieToDelete = savedMovies.find(movie => movie.movieId === deleteParam);
 
-    deleteMovieHandler(deleteParam);
+    mainApi.deleteMovie(movieToDelete._id)
+      .then(deletedMovieData => {
+        setSavedMovies(savedMovies.filter(movie => movie._id !== deletedMovieData._id));
+      })
+      .catch(err => {
+        setIsModalOpened(true);
+        setModalText(err);
+      })
   }
 
   return (
     <li className="movie-card">
+
+      {
+        isModalOpened && <Modal onClose={handleModalClose} modalText={modalText} />
+      }
+
       <a
         className="movie-card__trailer"
         href={movieData.trailerLink}

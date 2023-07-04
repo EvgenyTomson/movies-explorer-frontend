@@ -6,12 +6,20 @@ import Preloader from '../Preloader/Preloader';
 import { mainApi } from '../../utils/MainApi';
 import { movieFilter } from '../../utils/utils';
 import { useSavedMoviesContext } from '../../contexts/SavedMoviesContextProvider';
+import Modal from '../Modal/Modal';
 
 const SavedMovies = () => {
   const [isLoadind, setIsLoading] = useState(false);
   const { savedMovies, setSavedMovies } = useSavedMoviesContext();
   const [searchedSavedMovies, setSearchedSavedMovies] = useState([]);
   const [searchParams, setSearchParams] = useState({querry: '', includeShorts: false});
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [modalText, setModalText] = useState('');
+
+  const handleModalClose = () => {
+    setIsModalOpened(false);
+    setModalText('');
+  }
 
   useEffect(() => {
     setIsLoading(true);
@@ -20,7 +28,9 @@ const SavedMovies = () => {
         setSavedMovies(res);
       })
       .catch(err => {
-        console.error(err);
+        // console.error(err);
+        setIsModalOpened(true);
+        setModalText(err);
       })
       .finally(() => {
         setIsLoading(false);
@@ -41,11 +51,16 @@ const SavedMovies = () => {
 
   return (
     <main className="saved-movies container">
+
+      {
+        isModalOpened && <Modal onClose={handleModalClose} modalText={modalText} />
+      }
+
       <SearchForm
         searchParams={searchParams}
         handleSubmit={handleSearchSubmit}
-
         setSearchParams={setSearchParams}
+        isRequired={false}
       />
       {isLoadind
         ? <Preloader />

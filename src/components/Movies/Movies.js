@@ -8,6 +8,7 @@ import { getCardsAmount, movieFilter } from '../../utils/utils';
 import { useDebouncedFunction } from '../../hooks/useDebouncedFunction';
 import { useSavedMoviesContext } from '../../contexts/SavedMoviesContextProvider';
 import { mainApi } from '../../utils/MainApi';
+import Modal from '../Modal/Modal';
 
 
 const Movies = () => {
@@ -18,8 +19,14 @@ const Movies = () => {
   const [isMoveButtonVisible, setIsMoveButtonVisible] = useState(true);
   const [searchParams, setSearchParams] = useState({querry: '', includeShorts: false});
   const [serachedMovies, setSearchedMovies] = useState([]);
-
   const { setSavedMovies } = useSavedMoviesContext();
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [modalText, setModalText] = useState('');
+
+  const handleModalClose = () => {
+    setIsModalOpened(false);
+    setModalText('');
+  }
 
   useEffect(() => {
     setIsLoading(true);
@@ -28,7 +35,8 @@ const Movies = () => {
         setSavedMovies(res);
       })
       .catch(err => {
-        console.error(err);
+        setIsModalOpened(true);
+        setModalText(err);
       })
       .finally(() => {
         setIsLoading(false);
@@ -65,7 +73,8 @@ const Movies = () => {
         localStorage.setItem('movies', JSON.stringify(movies));
       })
       .catch(err => {
-        console.error(err);
+        setIsModalOpened(true);
+        setModalText(err);
       })
       .finally(() => {
         setIsLoading(false);
@@ -89,14 +98,8 @@ const Movies = () => {
   const handleSearchSubmit = (evt) => {
     evt.preventDefault();
     const {querry, shorts} = evt.target.elements;
-    console.log(querry.value, shorts.checked);
-    if (!querry.value) {
-      console.log('Нужно ввести ключевое слово');
-      return;
-    }
-
+    if (!querry.value) return;
     const currentSearch = {querry: querry.value, includeShorts: shorts.checked};
-
     localStorage.setItem('search', JSON.stringify(currentSearch));
     setSearchParams(currentSearch);
   }
@@ -110,10 +113,14 @@ const Movies = () => {
 
   return (
     <main className="movies container">
+
+      {
+        isModalOpened && <Modal onClose={handleModalClose} modalText={modalText} />
+      }
+
       <SearchForm
         searchParams={searchParams}
         handleSubmit={handleSearchSubmit}
-
         setSearchParams={setSearchParams}
       />
 
