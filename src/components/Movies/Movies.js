@@ -23,6 +23,7 @@ const Movies = () => {
   const { setSavedMovies } = useSavedMoviesContext();
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [modalText, setModalText] = useState('');
+  const [isEmptyQuerry, setIsEmptyQuerry] = useState(false);
 
   const handleModalClose = () => {
     setIsModalOpened(false);
@@ -99,7 +100,14 @@ const Movies = () => {
   const handleSearchSubmit = (evt) => {
     evt.preventDefault();
     const {querry, shorts} = evt.target.elements;
-    if (!querry.value) return;
+
+    if (!querry.value) {
+      setIsEmptyQuerry(true);
+      return;
+    }
+
+    setIsEmptyQuerry(false);
+
     const currentSearch = {querry: querry.value, includeShorts: shorts.checked, alreadySeached: true};
     localStorage.setItem('search', JSON.stringify(currentSearch));
     setSearchParams(currentSearch);
@@ -123,11 +131,15 @@ const Movies = () => {
         searchParams={searchParams}
         handleSubmit={handleSearchSubmit}
         setSearchParams={setSearchParams}
+        isEmptyQuerry={isEmptyQuerry}
       />
 
       {isLoadind
         ? <Preloader />
-        : <MoviesCardList moviesData={displayedMovies} isAlreadySeached={searchParams.alreadySeached} />
+        : <MoviesCardList
+            moviesData={displayedMovies}
+            isAlreadySeached={searchParams.alreadySeached}
+          />
       }
 
       {

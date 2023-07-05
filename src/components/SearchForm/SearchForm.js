@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css'
+import { MESSAGE_EMPTY_QUERRY } from '../../constants/constants';
 
-const SearchForm = ({ searchParams, handleSubmit, setSearchParams, isRequired = true }) => {
+// Логика валидации формы для страниц всех фильмов и сохраненных фильмов намерено отличается,
+// чтобы была возможность сбросить поисковый фильтр и отобразить все сохраненные фильмы
+const SearchForm = ({ searchParams, handleSubmit, setSearchParams, isRequired = true, isEmptyQuerry }) => {
   const [searchValue, setSearchValue] = useState(searchParams.querry);
   const [isShortsChecked, setIsShortsChecked] = useState(searchParams.includeShorts);
 
@@ -25,11 +28,13 @@ const SearchForm = ({ searchParams, handleSubmit, setSearchParams, isRequired = 
       <form
         className="search__form"
         onSubmit={handleSubmit}
+        noValidate
+
       >
         <fieldset className="search__request">
           <input
             className="search__input"
-            type="search"
+            type="text"
             name="querry"
             placeholder="Фильм"
             onChange={handleChange}
@@ -41,6 +46,13 @@ const SearchForm = ({ searchParams, handleSubmit, setSearchParams, isRequired = 
             type="submit"
           />
         </fieldset>
+
+        <span className="search__error-message">
+          {
+            isEmptyQuerry ? MESSAGE_EMPTY_QUERRY : ""
+          }
+        </span>
+
         <FilterCheckbox
           checkHandler={handleShortsCheck}
           isChecked={isShortsChecked}

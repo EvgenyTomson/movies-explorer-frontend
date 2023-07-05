@@ -15,7 +15,7 @@ const LoggedUserNavigation = ({ isBurger = false }) => {
           <NavLink
             to="/movies"
             className="navigation__link"
-            activeClassName="active"
+            activeclassname="active"
           >
             Фильмы
         </NavLink>
@@ -24,7 +24,7 @@ const LoggedUserNavigation = ({ isBurger = false }) => {
           <NavLink
             to="/saved-movies"
             className="navigation__link"
-            activeClassName="active"
+            activeclassname="active"
           >
             Сохранённые фильмы
           </NavLink>
@@ -34,7 +34,7 @@ const LoggedUserNavigation = ({ isBurger = false }) => {
       <NavLink
         to="/profile"
         className="navigation__link navigation__link_type_profile"
-        activeClassName="active"
+        activeclassname="active"
       >
         Аккаунт
       </NavLink>
