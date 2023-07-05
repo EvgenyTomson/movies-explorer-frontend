@@ -8,9 +8,8 @@ const ModalContent = ({ onClose, modalText }) => {
   useOnClickOutside(modalRef, onClose);
 
   return (
-    <div className="modal">
       <div className="modal__container" ref={modalRef}>
-        <div className="modal__form">
+        <div className="modal__content">
           <button
             className="modal__close"
             type="button"
@@ -27,7 +26,6 @@ const ModalContent = ({ onClose, modalText }) => {
           </h2>
         </div>
       </div>
-    </div>
   )
 }
 

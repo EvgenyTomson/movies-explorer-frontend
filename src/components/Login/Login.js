@@ -104,7 +104,7 @@ const Login = ({ setLoginStatus }) => {
                 type="submit"
                 disabled={!isValid}
               >
-                Зарегистрироваться
+                Войти
               </button>
         }
         <p className="auth__text">

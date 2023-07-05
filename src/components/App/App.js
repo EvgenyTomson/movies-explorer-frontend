@@ -16,6 +16,7 @@ import { SavedMoviesContextProvider } from '../../contexts/SavedMoviesContextPro
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Preloader from '../Preloader/Preloader';
 import Modal from '../Modal/Modal';
+import ModalContent from '../Modal/ModalContent';
 
 const App = () => {
   const [isLogged, setIsLogged] = useState(false);
@@ -63,11 +64,6 @@ const App = () => {
               <SavedMoviesContextProvider
                 context={{ savedMovies, setSavedMovies }}
               >
-
-                {
-                  isModalOpened && <Modal onClose={handleModalClose} modalText={modalText} />
-                }
-
                 <Routes>
                   <Route
                     path="/"
@@ -129,6 +125,11 @@ const App = () => {
                   <Route path="*" element={<Navigate to="/404" replace/>} />
                   <Route path="/404" element={<NotFound />} />
                 </Routes>
+
+                <Modal isOpen={isModalOpened}>
+                  <ModalContent onClose={handleModalClose} modalText={modalText} />
+                </Modal>
+
               </SavedMoviesContextProvider>
             </CurrentUserContextProvider>
 

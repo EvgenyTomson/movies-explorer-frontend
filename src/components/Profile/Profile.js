@@ -4,7 +4,7 @@ import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider
 import { useNavigate } from 'react-router-dom';
 import { mainApi } from '../../utils/MainApi';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
-import Modal from '../Modal/Modal';
+import { MESSAGE_API_PROFILE_SUCCESS } from '../../constants/constants';
 
 const Profile = ({ setLoginStatus }) => {
   const {currentUser, setCurrentUser} = useCurrentUserContext();
@@ -32,7 +32,7 @@ const Profile = ({ setLoginStatus }) => {
     mainApi.editUserData(values)
       .then(updatedUserData => {
         setCurrentUser(updatedUserData);
-        setApiMessage('Данные профиля успешно обновлены');
+        setApiMessage(MESSAGE_API_PROFILE_SUCCESS);
       })
       .catch(error => {
         setApiMessage(error);
@@ -73,22 +73,11 @@ const Profile = ({ setLoginStatus }) => {
     }
   }, [currentUser, values])
 
-  const [isModal, setIsModal] = useState(false);
-  const tmpHandle = () => {
-    setIsModal(true);
-  }
-  const onClose = () => {
-    setIsModal(false);
-  }
-
   return (
     <main className="profile container">
-      <h1 className="profile__title" onClick={tmpHandle}>
+      <h1 className="profile__title">
         {`Привет, ${currentUser.name}!`}
       </h1>
-
-      {isModal && <Modal onClose={onClose} modalText="Деревня приехала в госмти к городу и хочет стать самым сильным." />}
-
       <form
         name="profile__form"
         className="profile__form"

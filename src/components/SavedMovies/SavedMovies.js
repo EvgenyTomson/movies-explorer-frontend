@@ -7,6 +7,7 @@ import { mainApi } from '../../utils/MainApi';
 import { movieFilter } from '../../utils/utils';
 import { useSavedMoviesContext } from '../../contexts/SavedMoviesContextProvider';
 import Modal from '../Modal/Modal';
+import ModalContent from '../Modal/ModalContent';
 
 const SavedMovies = () => {
   const [isLoadind, setIsLoading] = useState(false);
@@ -28,7 +29,6 @@ const SavedMovies = () => {
         setSavedMovies(res);
       })
       .catch(err => {
-        // console.error(err);
         setIsModalOpened(true);
         setModalText(err);
       })
@@ -52,9 +52,9 @@ const SavedMovies = () => {
   return (
     <main className="saved-movies container">
 
-      {
-        isModalOpened && <Modal onClose={handleModalClose} modalText={modalText} />
-      }
+      <Modal isOpen={isModalOpened}>
+        <ModalContent onClose={handleModalClose} modalText={modalText} />
+      </Modal>
 
       <SearchForm
         searchParams={searchParams}

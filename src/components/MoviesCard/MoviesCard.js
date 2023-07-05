@@ -7,6 +7,7 @@ import { mainApi } from '../../utils/MainApi';
 import { useSavedMoviesContext } from '../../contexts/SavedMoviesContextProvider';
 import { useEffect, useState } from 'react';
 import Modal from '../Modal/Modal';
+import ModalContent from '../Modal/ModalContent';
 
 const MoviesCard = ({ movieData }) => {
   const { savedMovies, setSavedMovies } = useSavedMoviesContext();
@@ -64,9 +65,9 @@ const MoviesCard = ({ movieData }) => {
   return (
     <li className="movie-card">
 
-      {
-        isModalOpened && <Modal onClose={handleModalClose} modalText={modalText} />
-      }
+      <Modal isOpen={isModalOpened}>
+        <ModalContent onClose={handleModalClose} modalText={modalText} />
+      </Modal>
 
       <a
         className="movie-card__trailer"

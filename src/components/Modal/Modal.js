@@ -1,9 +1,11 @@
 import { createPortal } from 'react-dom';
-import ModalContent from './ModalContent';
+import './Modal.css';
 
-const Modal = ({ onClose, modalText }) => {
+const Modal = ({ isOpen, children }) => {
   return (
-    createPortal(<ModalContent onClose={onClose} modalText={modalText} />, document.body)
+    isOpen
+      ? createPortal(<div className="modal">{children}</div>, document.body)
+      : null
   )
 };
 

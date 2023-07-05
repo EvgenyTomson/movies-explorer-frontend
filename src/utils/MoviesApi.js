@@ -1,3 +1,5 @@
+import { MESSAGE_MOVIESAPI_GETFILMS_FAIL } from "../constants/constants";
+
 const apiOptions = {
   baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
   headers: {
@@ -23,7 +25,7 @@ class MoviesApi {
         headers: this._headers,
       })
         .then(res => {
-          return this._checkResponseStatus(res, 'Не удалось получить данные фильмов')
+          return this._checkResponseStatus(res, MESSAGE_MOVIESAPI_GETFILMS_FAIL)
         })
   }
 }

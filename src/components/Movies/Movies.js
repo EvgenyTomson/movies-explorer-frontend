@@ -9,6 +9,7 @@ import { useDebouncedFunction } from '../../hooks/useDebouncedFunction';
 import { useSavedMoviesContext } from '../../contexts/SavedMoviesContextProvider';
 import { mainApi } from '../../utils/MainApi';
 import Modal from '../Modal/Modal';
+import ModalContent from '../Modal/ModalContent';
 
 
 const Movies = () => {
@@ -114,9 +115,9 @@ const Movies = () => {
   return (
     <main className="movies container">
 
-      {
-        isModalOpened && <Modal onClose={handleModalClose} modalText={modalText} />
-      }
+      <Modal isOpen={isModalOpened}>
+        <ModalContent onClose={handleModalClose} modalText={modalText} />
+      </Modal>
 
       <SearchForm
         searchParams={searchParams}
