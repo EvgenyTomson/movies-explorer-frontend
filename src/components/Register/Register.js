@@ -25,6 +25,8 @@ const Register = ({ setLoginStatus }) => {
     .then(() => {
       // если регистрация успешна - сразу авторизуемся и переходим на Фильмы
       const { email, password } = values;
+      // регистрация прошла успешно, форму уже можно очистить
+      resetForm();
       return mainApi.signin({ email, password })
     })
     .then((userData) => {
@@ -39,8 +41,6 @@ const Register = ({ setLoginStatus }) => {
     .finally(() => {
       setIsLoading(false);
     })
-
-    resetForm();
   }
 
   return (

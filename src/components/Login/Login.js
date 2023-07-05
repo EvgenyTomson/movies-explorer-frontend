@@ -26,6 +26,7 @@ const Login = ({ setLoginStatus }) => {
       setCurrentUser(userData);
       setLoginStatus(true);
       localStorage.setItem('currentId', userData._id);
+      resetForm();
       navigate("/movies", {replace: true});
     })
     .catch(err => {
@@ -34,8 +35,6 @@ const Login = ({ setLoginStatus }) => {
     .finally(() => {
       setIsLoading(false);
     })
-
-    resetForm();
   }
 
   return (
