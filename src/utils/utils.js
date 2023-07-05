@@ -36,12 +36,7 @@ const checkMovieDuration = (movieDuration, isShortsIncluded, shortsDurationCrite
 
 const filterMovieByQuerry = (movie, searchQuerry) => {
   const lowerQuerry = searchQuerry.toLowerCase();
-
-  const isNameRuMatches = movie.nameRU.toLowerCase().includes(lowerQuerry);
-  const isNameEnMatches = movie.nameEN.toLowerCase().includes(lowerQuerry);
-  const isDescriptionMatches = movie.description.toLowerCase().includes(lowerQuerry);
-
-  return isNameRuMatches || isNameEnMatches || isDescriptionMatches;
+  return movie.nameRU.toLowerCase().includes(lowerQuerry);
 }
 
 export const movieFilter = (movie, { querry, includeShorts }) => {
