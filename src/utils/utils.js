@@ -32,7 +32,7 @@ export const getCardsAmount = () => {
 
 // Фильтрация фильмов
 const checkMovieDuration = (movieDuration, isShortsIncluded, shortsDurationCriteria = SHORTS_DURATION) => {
-  return isShortsIncluded || (movieDuration > shortsDurationCriteria);
+  return (isShortsIncluded && (movieDuration <= shortsDurationCriteria)) || (!isShortsIncluded && (movieDuration > shortsDurationCriteria));
 }
 
 const filterMovieByQuerry = (movie, searchQuerry) => {
