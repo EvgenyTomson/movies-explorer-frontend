@@ -12,14 +12,32 @@ const LoggedUserNavigation = ({ isBurger = false }) => {
         }
 
         <li className="navigation__item">
-          <NavLink to="/movies" className="navigation__link">Фильмы</NavLink>
+          <NavLink
+            to="/movies"
+            className="navigation__link"
+            activeClassName="active"
+          >
+            Фильмы
+        </NavLink>
         </li>
         <li className="navigation__item">
-          <NavLink to="/saved-movies" className="navigation__link navigation__link_type_saved-movies">Сохранённые фильмы</NavLink>
+          <NavLink
+            to="/saved-movies"
+            className="navigation__link"
+            activeClassName="active"
+          >
+            Сохранённые фильмы
+          </NavLink>
         </li>
 
       </ul>
-      <NavLink to="/profile" className="navigation__link navigation__link_type_profile">Аккаунт</NavLink>
+      <NavLink
+        to="/profile"
+        className="navigation__link navigation__link_type_profile"
+        activeClassName="active"
+      >
+        Аккаунт
+      </NavLink>
     </>
   )
 };
