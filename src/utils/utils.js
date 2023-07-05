@@ -4,6 +4,7 @@ import {
   DESKTOP_CARDS_AMOUNT,
   TABLET_CARDS_AMOUNT,
   MOBILE_CARDS_AMOUNT,
+  SHORTS_DURATION,
  } from '../constants/constants';
 
 export const convertDuration = (duration) => {
@@ -30,7 +31,7 @@ export const getCardsAmount = () => {
 }
 
 // Фильтрация фильмов
-const checkMovieDuration = (movieDuration, isShortsIncluded, shortsDurationCriteria = 40) => {
+const checkMovieDuration = (movieDuration, isShortsIncluded, shortsDurationCriteria = SHORTS_DURATION) => {
   return isShortsIncluded || (movieDuration > shortsDurationCriteria);
 }
 

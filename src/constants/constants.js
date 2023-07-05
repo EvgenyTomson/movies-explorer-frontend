@@ -6,3 +6,4 @@ export const TABLET_CARDS_AMOUNT = {totalCards: 8, extraCards: 2};
 export const MOBILE_CARDS_AMOUNT = {totalCards: 5, extraCards: 2};
 export const MESSAGE_API_PROFILE_SUCCESS = 'Данные профиля успешно обновлены';
 export const MESSAGE_MOVIESAPI_GETFILMS_FAIL = 'Не удалось получить данные фильмов';
+export const SHORTS_DURATION = 40;
