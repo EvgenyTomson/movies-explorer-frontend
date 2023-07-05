@@ -8,3 +8,4 @@ export const MESSAGE_API_PROFILE_SUCCESS = 'Данные профиля успе
 export const MESSAGE_MOVIESAPI_GETFILMS_FAIL = 'Не удалось получить данные фильмов';
 export const MESSAGE_EMPTY_QUERRY = 'Нужно ввести ключевое слово';
 export const SHORTS_DURATION = 40;
+export const PATTERN_EMAIL = '[a-z0-9]+@[a-z]+\\.{1,1}[a-z]{2,}';

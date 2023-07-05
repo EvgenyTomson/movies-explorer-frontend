@@ -6,6 +6,7 @@ import { mainApi } from '../../utils/MainApi';
 import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider';
 import { useState } from 'react';
 import Preloader from '../Preloader/Preloader';
+import { PATTERN_EMAIL } from '../../constants/constants';
 
 const Login = ({ setLoginStatus }) => {
   const { setCurrentUser} = useCurrentUserContext();
@@ -66,6 +67,7 @@ const Login = ({ setLoginStatus }) => {
             maxLength="40"
             onChange={handleChange}
             value={values.email || ""}
+            pattern={PATTERN_EMAIL}
           />
           <span className="auth__error" >{errors.email}</span>
         </label>

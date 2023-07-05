@@ -6,6 +6,7 @@ import { mainApi } from '../../utils/MainApi';
 import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider';
 import { useState } from 'react';
 import Preloader from '../Preloader/Preloader';
+import { PATTERN_EMAIL } from '../../constants/constants';
 
 const Register = ({ setLoginStatus }) => {
   const { values, handleChange, errors, isValid, resetForm, inputVilidities } = useFormWithValidation();
@@ -93,6 +94,7 @@ const Register = ({ setLoginStatus }) => {
             maxLength="40"
             onChange={handleChange}
             value={values.email || ""}
+            pattern={PATTERN_EMAIL}
           />
           <span className="register__error" >{errors.email}</span>
         </label>
