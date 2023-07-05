@@ -12,9 +12,7 @@ IP 51.250.20.129
 Фронтенд: https://tomson.nomoredomains.rocks  
 
 
-## Ссылки на пул реквест level-3  
-
-https://github.com/EvgenyTomson/movies-explorer-frontend/pull/2  
+## [Ссылка на пул реквест level-3](https://github.com/EvgenyTomson/movies-explorer-frontend/pull/2)  
 
 
 
