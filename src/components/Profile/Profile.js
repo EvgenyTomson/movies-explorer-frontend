@@ -4,7 +4,7 @@ import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider
 import { useNavigate } from 'react-router-dom';
 import { mainApi } from '../../utils/MainApi';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
-import { MESSAGE_API_PROFILE_SUCCESS } from '../../constants/constants';
+import { MESSAGE_API_PROFILE_SUCCESS, PATTERN_EMAIL } from '../../constants/constants';
 
 const Profile = ({ setLoginStatus }) => {
   const {currentUser, setCurrentUser} = useCurrentUserContext();
@@ -121,6 +121,7 @@ const Profile = ({ setLoginStatus }) => {
               placeholder="Укажите почту"
               value={values.email || ''}
               onChange={handleChange}
+              pattern={PATTERN_EMAIL}
             />
           </div>
           <span className="profile__error" >{errors.email}</span>
