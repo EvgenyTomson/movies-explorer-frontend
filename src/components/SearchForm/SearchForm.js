@@ -29,7 +29,7 @@ const SearchForm = ({ searchParams, handleSubmit, setSearchParams, isRequired = 
         <fieldset className="search__request">
           <input
             className="search__input"
-            type="text"
+            type="search"
             name="querry"
             placeholder="Фильм"
             onChange={handleChange}

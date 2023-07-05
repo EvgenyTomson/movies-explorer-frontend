@@ -1,7 +1,6 @@
 const mainApiOptions = {
-  // baseUrl: 'https://auth.nomoreparties.co',
-  baseUrl: 'http://localhost:3000',
-  // baseUrl: 'https://api.tomson.students.nomoredomains.monster',
+  // baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://api.tomson.nomoredomains.rocks',
   headers: {
     'Content-Type': 'application/json',
   }
@@ -30,8 +29,6 @@ class MainApi {
   }
 
   signin(userData) {
-    console.log('signin userData: ', userData);
-
     return fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
       credentials: 'include',
