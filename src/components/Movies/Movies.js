@@ -18,7 +18,7 @@ const Movies = () => {
   const [displayedMovies, setDisplayedMovies] = useState([]);
   const [cardsAmount, setCardsAmount] = useState(getCardsAmount());
   const [isMoveButtonVisible, setIsMoveButtonVisible] = useState(true);
-  const [searchParams, setSearchParams] = useState({querry: '', includeShorts: false});
+  const [searchParams, setSearchParams] = useState({querry: '', includeShorts: false, alreadySeached: false});
   const [serachedMovies, setSearchedMovies] = useState([]);
   const { setSavedMovies } = useSavedMoviesContext();
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -100,7 +100,7 @@ const Movies = () => {
     evt.preventDefault();
     const {querry, shorts} = evt.target.elements;
     if (!querry.value) return;
-    const currentSearch = {querry: querry.value, includeShorts: shorts.checked};
+    const currentSearch = {querry: querry.value, includeShorts: shorts.checked, alreadySeached: true};
     localStorage.setItem('search', JSON.stringify(currentSearch));
     setSearchParams(currentSearch);
   }
@@ -127,7 +127,7 @@ const Movies = () => {
 
       {isLoadind
         ? <Preloader />
-        : <MoviesCardList moviesData={displayedMovies} />
+        : <MoviesCardList moviesData={displayedMovies} isAlreadySeached={searchParams.alreadySeached} />
       }
 
       {

@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css'
 
-const MoviesCardList = ({ moviesData }) => {
+const MoviesCardList = ({ moviesData, isAlreadySeached }) => {
   const { pathname } = useLocation();
 
   return (
@@ -26,7 +26,11 @@ const MoviesCardList = ({ moviesData }) => {
           : <span
               className="movies-section__empty"
             >
-              Ничего не найдено
+              {
+                isAlreadySeached
+                  ? "Ничего не найдено"
+                  : ""
+              }
             </span>
       }
     </section>
