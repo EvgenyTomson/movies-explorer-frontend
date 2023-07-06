@@ -24,12 +24,17 @@
 .profile__input-container {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
 .profile__input-container:first-of-type {
-  padding-bottom: 14px;
   border-bottom: 1px solid #424242;
+}
+
+.profile__input-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .profile__input-label {
@@ -41,7 +46,7 @@
 }
 
 .profile__input {
-  width: 50%;
+  width: 80%;
   padding-bottom: 2px;
   font-weight: 400;
   font-size: 11px;
@@ -65,8 +70,30 @@
   border-bottom: 2px solid #5762f1;
 }
 
+.profile__error {
+  margin-bottom: 4px;
+  min-height: 10px;
+  font-style: normal;
+  font-weight: 400;
+  color: #ee3465;
+  font-size: 10px;
+  line-height: 1;
+  opacity: 1;
+  transition: 0.3s ease-in-out;
+}
+
+.profile__api-error {
+  margin: 0;
+  margin-top: 167px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: normal;
+  color: #ff004c;
+}
+
 .profile__buttons {
-  margin: 198px auto 0;
+  margin: 4px auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,7 +126,8 @@
 .profile__submit {
   width: 100%;
   padding: 13px 0 15px;
-  margin: 198px auto 0;
+  margin: 4px auto 0;
+
   font-size: 14px;
   font-weight: 500;
   color: #fff;
@@ -114,6 +142,12 @@
   opacity: .8;
 }
 
+.profile__submit:disabled {
+  color: #c2c2c2;
+  background-color: #f8f8f8;
+  pointer-events: none;
+}
+
 @media screen and (max-width: 900px) {
   .profile {
     padding: 230px 30px 269px;
@@ -123,12 +157,16 @@
     margin-top: 96px;
   }
 
+  .profile__api-error {
+    margin-top: 159px;
+  }
+
   .profile__buttons {
-    margin-top: 192px;
+    margin-top: 4px;
   }
 
   .profile__submit {
-    margin-top: 192px;
+    margin-top: 4px;
   }
 }
 
@@ -141,13 +179,17 @@
     margin-top: 80px;
   }
 
+  .profile__api-error {
+    margin-top: 329px;
+  }
+
   .profile__buttons {
-    margin-top: 360px;
+    margin-top: 4px;
     gap: 13px;
   }
 
   .profile__submit {
-    margin-top: 360px;
+    margin-top: 4px;
   }
 
   .profile__button {

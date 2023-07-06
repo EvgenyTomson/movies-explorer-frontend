@@ -2,20 +2,73 @@ import { useLocation } from 'react-router-dom';
 import { convertDuration } from '../../utils/utils';
 import MovieCardButton from './MovieCardButton/MovieCardButton';
 import './MoviesCard.css';
+import { MOVIES_IMAGES_BASE_URL } from '../../constants/constants';
+import { mainApi } from '../../utils/MainApi';
+import { useSavedMoviesContext } from '../../contexts/SavedMoviesContextProvider';
+import { useEffect, useState } from 'react';
+import Modal from '../Modal/Modal';
+import ModalContent from '../Modal/ModalContent';
 
 const MoviesCard = ({ movieData }) => {
+  const { savedMovies, setSavedMovies } = useSavedMoviesContext();
   const { pathname } = useLocation();
+  const [isMovieSaved, setIsMovieSaved] = useState(false);
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [modalText, setModalText] = useState('');
 
-  const saveMovieHandler = () => {
-    console.log('Movie saved');
+  const handleModalClose = () => {
+    setIsModalOpened(false);
+    setModalText('');
   }
 
-  const deleteMovieHandler = () => {
-    console.log('Movie deleted');
+  useEffect(() => {
+    setIsMovieSaved(savedMovies.some(movie => movie.movieId === movieData.id || movie.movieId === movieData.movieId));
+  }, [savedMovies, movieData])
+
+  const saveMovieHandler = () => {
+    const savingMovieData = {
+      ...movieData,
+      movieId: movieData.id,
+      image: `${MOVIES_IMAGES_BASE_URL}${movieData.image.url}`,
+      thumbnail: `${MOVIES_IMAGES_BASE_URL}${movieData.image.formats.thumbnail.url}`,
+    };
+    delete savingMovieData.id;
+    delete savingMovieData.created_at;
+    delete savingMovieData.updated_at;
+
+    mainApi.saveMovie(savingMovieData)
+      .then(movie => {
+        setSavedMovies([...savedMovies, movie]);
+      })
+      .catch(err => {
+        setIsModalOpened(true);
+        setModalText(err);
+      })
+  }
+
+  const onDeleteMovie = () => {
+    const deleteParam = pathname === '/movies'
+      ? movieData.id
+      : movieData.movieId;
+    const movieToDelete = savedMovies.find(movie => movie.movieId === deleteParam);
+
+    mainApi.deleteMovie(movieToDelete._id)
+      .then(deletedMovieData => {
+        setSavedMovies(savedMovies.filter(movie => movie._id !== deletedMovieData._id));
+      })
+      .catch(err => {
+        setIsModalOpened(true);
+        setModalText(err);
+      })
   }
 
   return (
     <li className="movie-card">
+
+      <Modal isOpen={isModalOpened}>
+        <ModalContent onClose={handleModalClose} modalText={modalText} />
+      </Modal>
+
       <a
         className="movie-card__trailer"
         href={movieData.trailerLink}
@@ -24,16 +77,20 @@ const MoviesCard = ({ movieData }) => {
       >
         <img
           className="movie-card__image"
-          src={movieData.image}
+          src={
+            pathname === "/movies"
+              ? `${MOVIES_IMAGES_BASE_URL}/${movieData.image.url}`
+              : movieData.image
+          }
           alt={movieData.nameRU}
         />
       </a>
 
       <MovieCardButton
-        onClickHandler={pathname === "/movies" ? saveMovieHandler : deleteMovieHandler}
-        typeClass={''}
+        onClickHandler={isMovieSaved ? onDeleteMovie : saveMovieHandler}
+        typeClass={isMovieSaved && pathname === "/movies"}
       >
-        {pathname === "/movies" ? 'Сохранить' : 'x'}
+        {pathname === "/movies" ? 'Сохранить' : 'X'}
       </MovieCardButton>
       <div className="movie-card__description">
         <h2 className="movie-card__name">

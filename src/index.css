@@ -11,6 +11,10 @@
   --max-content-width: 1140px;
 }
 
+.page {
+  background-color: var(--main-bg-color);
+}
+
 .container {
   margin: 0 auto;
   max-width: var(--max-content-width);

@@ -1,4 +1,6 @@
 .movies {
+  width: 100%;
+  box-sizing: border-box;
   flex-grow: 1;
   padding: 60px 0 80px;
 }

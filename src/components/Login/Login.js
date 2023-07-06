@@ -1,25 +1,54 @@
 import './Login.css';
 import Logo from '../Logo/Logo';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { mainApi } from '../../utils/MainApi';
+import { useCurrentUserContext } from '../../contexts/CurrentUserContextProvider';
+import { useState } from 'react';
+import Preloader from '../Preloader/Preloader';
+import { PATTERN_EMAIL } from '../../constants/constants';
 
-const Login = ({ onLogin }) => {
+const Login = ({ setLoginStatus }) => {
+  const { setCurrentUser} = useCurrentUserContext();
   const { values, handleChange, errors, isValid, resetForm, inputVilidities } = useFormWithValidation();
-
+  const navigate = useNavigate();
+  const [apiErrorMessage, setApiErrorMessage] = useState('');
+  const [isLoadind, setIsLoading] =  useState(false);
   const defaultRegisterInputClassName = 'auth__input';
   const errorRegisterInputClassName = 'auth__input auth__input_type_error';
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onLogin();
-    resetForm();
+    setApiErrorMessage('');
+
+    setIsLoading(true);
+    mainApi.signin(values)
+    .then((userData) => {
+      setCurrentUser(userData);
+      setLoginStatus(true);
+      localStorage.setItem('currentId', userData._id);
+      resetForm();
+      navigate("/movies", {replace: true});
+    })
+    .catch(err => {
+      setApiErrorMessage(err);
+    })
+    .finally(() => {
+      setIsLoading(false);
+    })
   }
 
   return (
     <main className="auth container">
       <Logo />
       <h1 className="auth__title">Рады видеть!</h1>
-      <form action="#" className="auth__form" name="login" noValidate onSubmit={handleSubmit} >
+      <form
+        action="#"
+        className="auth__form"
+        name="login"
+        noValidate
+        onSubmit={handleSubmit}
+      >
         <label htmlFor="email" className="auth__field">
           E-mail
           <input
@@ -38,6 +67,7 @@ const Login = ({ onLogin }) => {
             maxLength="40"
             onChange={handleChange}
             value={values.email || ""}
+            pattern={PATTERN_EMAIL}
           />
           <span className="auth__error" >{errors.email}</span>
         </label>
@@ -62,13 +92,22 @@ const Login = ({ onLogin }) => {
           />
           <span className="auth__error" >{errors.password}</span>
         </label>
-        <button
-          className={isValid ? "auth__submit": "auth__submit auth__submit_disabled"}
-          type="submit"
-          disabled={!isValid}
-        >
-          Войти
-        </button>
+
+        <span className="auth__api-error">
+          {apiErrorMessage}
+        </span>
+
+        {
+          isLoadind
+            ? <Preloader />
+            : <button
+                className={isValid ? "register__submit": "register__submit register__submit_disabled"}
+                type="submit"
+                disabled={!isValid}
+              >
+                Войти
+              </button>
+        }
         <p className="auth__text">
           Ещё не зарегистрированы? <Link to="/signup" className="auth__link">Регистрация</Link>
         </p>
