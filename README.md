@@ -1,22 +1,29 @@
-# movies-explorer-frontend
+# Frontend для сервиса поиска и сохранения избарнных фильмов    
+
+
+## Технологии  
+* React
+* React Router 6
+* React Context
+
+
+## Запуск проекта  
+
+Склонируйте репозиторий на свой компьютер:
+ ```bash
+ git clone https://github.com/EvgenyTomson/movies-explorer-frontend.git
+```
+
+Перейдите в директорию проекта и выполните команду для установки зависимостей:
+```bash
+npm install
+```
+
+Для запуска приложения используйте команду:
+```bash
+npm start
+```
+
 
 Ссылка на [макет](https://disk.yandex.ru/d/TrLPGcNzFUbs0w)
 
-
-## Ссылки на проект
-
-IP 51.250.20.129  
-
-Бэкенд: https://api.tomson.nomoredomains.rocks  
-
-Фронтенд: https://tomson.nomoredomains.rocks  
-
-
-## [Ссылка на пул реквест level-3](https://github.com/EvgenyTomson/movies-explorer-frontend/pull/2)  
-
-
-
-"devDependencies": {
-  "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
-}
-Пришлось добавить из-за этой [ошибки](https://stackoverflow.com/questions/76435306/babel-preset-react-app-is-importing-the-babel-plugin-proposal-private-propert)
